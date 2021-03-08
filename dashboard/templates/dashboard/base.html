@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DS Group</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/static/assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/static/assets/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- <link rel="stylesheet" href="/static/assets/vendors/flag-icon-css/css/flag-icon.min.css"> -->
+  <link rel="stylesheet" href="/static/assets/vendors/jvectormap/jquery-jvectormap.css">
+  <!-- End plugin css for this page -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="/static/assets/css/demo/style.css">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
+
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css">
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
+</head>
+
+<body>
+  <script src="/static/assets/js/preloader.js"></script>
+  <div class="body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    {% block sidebar %}
+    <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+      <div class="mdc-drawer__header">
+        <a href="#">
+
+          <h3 style="color:white;">Digital Spirit</h3>
+        </a>
+      </div>
+      <div class="mdc-drawer__content">
+        <div class="mdc-list-group">
+          <nav class="mdc-list mdc-drawer-menu">
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-drawer-link" href="{% url 'dashboard' %}">
+                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
+                Dashboard
+              </a>
+            </div>
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="intern">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                &nbsp;&nbsp;&nbsp;
+                INTERNS
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="intern">
+                <nav class="mdc-list mdc-drawer-submenu">
+
+                  <div class="mdc-list-item mdc-drawer-item">
+
+                    <a class="mdc-drawer-link" href="{% url 'register_intern' %}">
+                      REGISTER &nbsp;&nbsp;INTERN
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_interns' %}">
+                      VIEW &nbsp;&nbsp;INTERNS
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'intern_attendance' %}">
+                      ATTENDANCE
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainees">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+                &nbsp;&nbsp;&nbsp;
+                TRAINEES
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="trainees">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_trainees' %}">
+                      REGISTER&nbsp;&nbsp;TRAINEES
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_trainees' %}">
+                      VIEW &nbsp;&nbsp;TRAINEES
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'trainee_attendance' %}">
+                      ATTENDANCE
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
+                <i class="fa fa-user-circle"></i>
+                &nbsp;&nbsp;&nbsp;
+                EMPLOYEE
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="employee">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_employees' %}">
+                      REGISTER&nbsp;&nbsp;EMPLOYEE
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_employees' %}">
+                      VIEW &nbsp;&nbsp;EMPLOYEE
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'emp_attendance' %}">
+                      ATTENDANCE
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
+                <i class="fa fa-graduation-cap"></i>
+                &nbsp;&nbsp;
+                TRAINER
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="trai">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_trainer' %}">
+                      REGISTER&nbsp;&nbsp;TRAINER
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_trainer' %}">
+                      VIEW &nbsp;&nbsp;TRAINER
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'trainer_attendance' %}">
+                      ATTENDANCE
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
+                <i class="fa fa-users" style="font-size:16px"></i>&nbsp;&nbsp;&nbsp;
+
+                STAFF
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="staff">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_staff' %}">
+                      REGISTER&nbsp;&nbsp; STAFF
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_staff' %}">
+                      VIEW&nbsp;&nbsp; STAFF
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'staff_attendance' %}">
+                      ATTENDANCE
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
+                <i class="fa fa-arrows-alt"></i>
+                &nbsp;&nbsp;
+                LEAD
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="lead">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'register_lead' %}">
+                      REGISTER&nbsp;&nbsp; LEAD
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_lead' %}">
+                      VIEW&nbsp;&nbsp; LEAD
+                    </a>
+                  </div>
+
+                </nav>
+              </div>
+            </div>
+
+            {% if perms.dashboard.add_payroll %}
+
+            <div class="mdc-list-item mdc-drawer-item">
+              <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="payroll">
+                <i class="fa fa-rupee"></i>
+                &nbsp;&nbsp;
+                PAYROLL
+                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+              </a>
+              <div class="mdc-expansion-panel" id="payroll">
+                <nav class="mdc-list mdc-drawer-submenu">
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'add_salary' %}">
+                      ADD&nbsp;&nbsp; SALARY
+                    </a>
+                  </div>
+                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-drawer-link" href="{% url 'view_salary' %}">
+                      VIEW &nbsp;&nbsp;SALARY
+                    </a>
+                  </div>
+                </nav>
+              </div>
+            </div>
+            {% endif %}
+          </nav>
+        </div>
+
+      </div>
+    </aside>
+    {% endblock sidebar %}
+    <!-- partial -->
+    <div class="main-wrapper mdc-drawer-app-content">
+      <!-- partial:partials/_navbar.html -->
+      {% block header %}
+      <header class="mdc-top-app-bar">
+        <div class="mdc-top-app-bar__row">
+
+          <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            {% comment %} <img src="/static/assets/images/Digital Spirit(makeITeasy).png" alt="logo">&nbsp; &nbsp;&nbsp;&nbsp; {% endcomment %}
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
+            <span class="mdc-top-app-bar__title">Dashboard</span>
+
+          </div>
+          <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right">
+            <div class="menu-button-container menu-profile d-none d-md-block">
+              <button class="mdc-button mdc-menu-button">
+                <span class="d-flex align-items-center">
+                  <span class="user-name">Log Out</span>
+                  <span class="figure">
+                    <img src="/static/assets/images/download.jpeg" alt="user" class="user">
+                  </span>
+
+                </span>
+              </button>
+              <div class="mdc-menu mdc-menu-surface" tabindex="-1">
+                <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                  <li class="mdc-list-item" role="menuitem">
+                    <div class="item-thumbnail item-thumbnail-icon-only">
+                      <i class="mdi mdi-settings-outline text-primary"></i>
+                    </div>
+                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                      <a href="{% url 'user_logout' %}" class="item-subject font-weight-normal">Logout</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="divider d-none d-md-block"></div>
+            <div class="menu-button-container">
+              <button class="mdc-button mdc-menu-button">
+                <i class="mdi mdi-bell"></i>
+              </button>
+              <div class="mdc-menu mdc-menu-surface" tabindex="-1">
+                <h6 class="title"> <i class="mdi mdi-bell-outline mr-2 tx-16"></i> Notifications</h6>
+                <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
+                  <li class="mdc-list-item" role="menuitem">
+                    <div class="item-thumbnail item-thumbnail-icon">
+                      <i class="mdi mdi-email-outline"></i>
+                    </div>
+                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                      <h6 class="item-subject font-weight-normal">You received a new message</h6>
+                      <small class="text-muted"> 6 min ago </small>
+                    </div>
+                  </li>
+                  <li class="mdc-list-item" role="menuitem">
+                    <div class="item-thumbnail item-thumbnail-icon">
+                      <i class="mdi mdi-account-outline"></i>
+                    </div>
+                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                      <h6 class="item-subject font-weight-normal">New user registered</h6>
+                      <small class="text-muted"> 15 min ago </small>
+                    </div>
+                  </li>
+                  <li class="mdc-list-item" role="menuitem">
+                    <div class="item-thumbnail item-thumbnail-icon">
+                      <i class="mdi mdi-alert-circle-outline"></i>
+                    </div>
+                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                      <h6 class="item-subject font-weight-normal">System Alert</h6>
+                      <small class="text-muted"> 2 days ago </small>
+                    </div>
+                  </li>
+                  <li class="mdc-list-item" role="menuitem">
+                    <div class="item-thumbnail item-thumbnail-icon">
+                      <i class="mdi mdi-update"></i>
+                    </div>
+                    <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                      <h6 class="item-subject font-weight-normal">You have a new update</h6>
+                      <small class="text-muted"> 3 days ago </small>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      {% endblock header %}
+      <!-- partial -->
+      {% block contain %}
+      <div class="page-wrapper mdc-toolbar-fixed-adjust">
+        {% block maincontain %}
+
+        {% endblock maincontain %}
+        <!-- partial -->
+      </div>
+
+      {% endblock contain %}
+
+    </div>
+
+  </div>
+  <!-- plugins:js -->
+  <script src="/static/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="/static/assets/vendors/chartjs/Chart.min.js"></script>
+  <script src="/static/assets/vendors/jvectormap/jquery-jvectormap.min.js"></script>
+  <script src="/static/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="/static/assets/js/material.js"></script>
+  <script src="/static/assets/js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="/static/assets/js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

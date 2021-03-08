@@ -1,0 +1,136 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<style>
+input{
+    text-transform: capitalize; 
+    }
+  #email{ text-transform: lowercase;}
+</style>
+<div class="container">
+  <div class="col-md-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+  <div class="col-lg-12"></div>
+</div>
+
+<div class="row">
+
+  <!-- Today status end -->
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header bg-transparent">
+            <div class="card-body">
+              <div class="container">
+                <form name="myformcont" class="my-2" action="" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <h1 style="font-size: 25px;text-align: center;">Lead Details</h1>
+                  <!-- <h2 class="text-center">LIC Form</h2> -->
+                  <div class="row jumbotron">
+
+                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                      <label for="name">Name :</label>
+                      <input type="text" required class="form-control" name="name" id="name-f" placeholder=" Full Name." style="font-size:15px;"><br>
+                    </div>
+                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+
+                      <label for="email">Email:</label>
+                      <input type="email" required onfocusout="ValidateEmail()" class="form-control" name="email" id="email" placeholder=" Email" style="font-size:15px;">
+                      <span id="email_error"></span>
+                    </div>
+
+                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                      <label for="Date">Regarding:</label>
+                      <input type="text" required name="regarding" class="form-control" id="regarding" placeholder=" Regarding" style="font-size:15px;">
+                    </div>
+                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                      <label for="bname">Reference</label>
+                      <select input type="text" class="form-control" name="reference" id="reference" placeholder=" Reference " style="font-size:15px;">
+                        <option value=""></option>
+                        <option value="facebook">Facebook</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="linkain">Linkain</option>
+                        <option value="twitter">Twitter</option>
+                        <option value="other">Other</option>
+                        <option value="people">Through people</option>
+                      </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label for="cost_center"> Message:</label>
+                      <textarea type="text" required class="form-control" name="message" id="message" placeholder="Message:-" rows="3" style="font-size:15px;"></textarea>
+                    </div>
+
+                    <div class="col-sm-12 form-group mb-0">
+                      <button class="btn btn-primary float-right" name="btn1" style="margin-left: 300px;height: 30px;">
+                        <h2 style="font-size: small;">Submit</h2>
+                      </button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function ValidateEmail() {
+    var email = document.getElementById('email');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_error');
+    var badColor = "#FF0000";
+    if (!email.value == '') {
+      if (!filter.test(email.value)) {
+        message.style.color = badColor;
+        message.innerHTML = "Please enter a valid email address"
+        return false;
+      } else {
+        message.innerHTML = ""
+        return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
+  }
+</script>
+{% endblock maincontain %}

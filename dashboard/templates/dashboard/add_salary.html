@@ -1,0 +1,153 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+
+<style>
+  label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .container {}
+
+  .form-control {
+    background-color: #ccc;
+  }
+
+  .form-select {
+    margin-left: 20px;
+  }
+</style>
+<div class="main">
+
+  <section class="signup">
+    <div class="container">
+      <form method="POST" action="">
+        {% csrf_token %}
+
+        <h2 class="text-center">Salary Details</h2>
+
+        <div class="row jumbotron" style="background-color:white;">
+
+          <div class="col-sm-6 form-group" style="margin-top: -20px; text-align:center;">
+
+            <select class="form-control" name=empname>
+              {% for object in employee %}
+              <option value="{{object.emp_name}}">{{object.emp_name}}</option>
+              {% endfor %}
+            </select>
+
+            <label for="name">Earnings:</label>
+
+          </div>
+          <div class="col-sm-6 form-group" style="margin-top: -20px;text-align:center;">
+
+            <label for="email">Deductions:</label>
+
+          </div>
+
+          <div class="col-sm-6 form-group">
+            <label for="Date">Package:</label>
+            <input type="text" name="salary" id="salary" class="form-control" placeholder="Employee salary" style="font-size:15px; width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="e_group">TDS</label>
+            <input type="int" class="form-control" name="tds" id="TDS" placeholder="TDS" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="cost_center">Basic</label>
+            <input type="text" class="form-control" name="basic" id="Basic" placeholder="Basic" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="bname">PF</label>
+            <input type="text" class="form-control" name="pf" id="PF" placeholder="Provident Fund " style="font-size:15px;width:80%;">
+
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="Dname">DA </label>
+            <input type="text" class="form-control" name="da" id="DA" placeholder="Dearness Allowance" style="font-size:15px;width:80%;">
+          </div>
+
+          <div class="col-sm-6 form-group">
+            <label for="cc description">Prof.Tax</label>
+            <input type="text" class="form-control" name="prof_tax" id="Prof. Tax" placeholder="Prof. Tax" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="pan_no">HRA</label>
+            <input type="text" class="form-control" name="hra" id="HRA" placeholder="House rent Allowance " style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="created_on">Total Deductions</label>
+            <input type="int" class="form-control" name="deductions" id="Total Deductions" placeholder="Total Deductions" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="created_on">TA</label>
+            <input type="int" class="form-control" name="ta" id="TA" placeholder="TA" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="renew_date">Medical Allowance</label>
+            <input type="text" name="medical_allowance" class="form-control datetimepicker" id="Medical Allowance" placeholder="Medical Allowance" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="created_on">Other</label>
+            <input type="int" class="form-control" name="other" id="Other" placeholder="other" style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="renew_date">Net Salary</label>
+            <input type="text" name="net_salary" class="form-control datetimepicker" id="Net Salary" placeholder="Net Salary " style="font-size:15px;width:80%;">
+          </div>
+          <div class="col-sm-6 form-group">
+            <label for="renew_date"> Total Earnings</label>
+            <input type="text" name="sub_total" class="form-control datetimepicker" id="Sub Total" placeholder="Total" style="font-size:15px;width:80%;">
+          </div>
+
+          <div class="col-sm-12 form-group mb-0">
+            <button class="btn btn-primary float-right" name="btn" value="submit">
+              <h2 style="font-size:20px; font-weight:bold; color:#ffffff;">submit</h2>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.getElementById("salary").onchange = function() {
+        NetSalary()
+      };
+
+      function NetSalary() {
+        var Package = parseFloat(document.getElementById("salary").value);
+        var monthly = Package / 12;
+        var Basic = Math.ceil((Package / 2) / 12);
+        var DA = Math.ceil((Package * 0.25) / 12);
+        var HRA = Math.ceil((Package * 0.15) / 12);
+        var TA = Math.ceil((Package * 0.075) / 12);
+        var OTHER = Math.ceil((Package * 0.005) / 12);
+        var PF = Math.ceil(((Package + DA) * 0.12) / 12);
+        var MA = Math.ceil((Package * 2 / 100) / 12);
+        var ProfTax = 200;
+        document.getElementById("Basic").value = Basic;
+        document.getElementById("DA").value = DA;
+        document.getElementById("HRA").value = HRA;
+        document.getElementById("TA").value = TA;
+        document.getElementById("PF").value = PF;
+        document.getElementById("Medical Allowance").value = MA;
+        document.getElementById("Other").value = OTHER;
+        document.getElementById("Prof. Tax").value = ProfTax;
+        var subtotal = document.getElementById("Sub Total").value = Basic + DA + HRA + MA + TA + OTHER;
+        if (Package <= 250000) {
+          var TDS = document.getElementById("TDS").value = 0;
+        } else if (Package > 250000 && Package <= 500000) {
+          var TDS = document.getElementById("TDS").value = Basic * 5 / 100;
+        } else if (Package > 500000 && Package <= 1000000) {
+          var TDS = document.getElementById("TDS").value = 12500 + (Basic * 20 / 100);
+        } else {
+          var TDS = document.getElementById("TDS").value = 112500 + (Basic * 30 / 100);
+        }
+        var deduction = document.getElementById("Total Deductions").value = TDS + PF + ProfTax;
+        var net_salary = subtotal - deduction;
+        document.getElementById('Net Salary').value = Math.ceil(net_salary);
+      }
+    </script>
+
+    {% endblock maincontain %}

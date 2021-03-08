@@ -1,0 +1,730 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+
+<style type="text/css">
+  label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  body {
+    background: ;
+  }
+  input{
+    text-transform: capitalize; 
+    }
+  #email,#emails{ text-transform: lowercase;}
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+   
+    <form method="POST" action="{% url 'manage_trainer' edit_trainer.id %}" enctype="multipart/form-data">
+     {% csrf_token %}
+       <center><h2 class="text-center">Personal Details</h2></center>
+     
+       <div class="row jumbotron">
+        <div class="row">
+         <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="trainer_name" id="trainer_name" placeholder="employee_name" value="{{edit_trainer.trainer_name}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainer.email}}" onfocusout="ValidateEmail()">
+            <span id="email_error"></span>
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainer.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+             <span id="messages"></span>
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainer.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+          <span id="msg"></span>
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" style="text-transform: uppercase;" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainer.pan_card}}" onfocusout="PanCardValidation()" >
+            <span id="msgs"></span>
+          </div>
+          <div class="col-sm-4 form-group">
+                <select class="form-control" name="gender" value="{{edit_trainer.gender}}">
+               {% if edit_trainer.gender == "Male" %}
+                                    <option value="Male" selected="selected" >Male</option>
+                                {% else %}
+                                    <option value="Male" >Male</option>
+                                {% endif %}
+                                {% if edit_trainer.gender == "Female" %}
+                                    <option value="Female" selected="selected" >Female</option>
+                                {% else %}
+                                    <option value="Female">Female</option>
+                                {% endif %}
+                </select>
+            </div>
+
+          <div class="col-sm-4 form-group">
+            <select class="form-control" name="blood_group" value="{{edit_trainer.blood_group}}">
+             {% if edit_trainer.blood_group == "A+" %}
+          <option value="A+">A+</option>
+          {% else %}
+          <option value="A+">A+</option>
+          {% endif %}
+           {% if edit_trainer.blood_group == "A-" %}
+          <option value="A-">A-</option>
+          {% else %}
+          <option value="A-">A-</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "B+" %}
+          <option value="B+">B+</option>
+          {% else %}
+          <option value="B+">B+</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "B-" %}
+          <option value="B-">B-</option>
+          {% else %}
+          <option value="B-">B-</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "O+" %}
+          <option value="O+">O+</option>
+          {% else %}
+          <option value="O+">O+</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "O-" %}
+          <option value="O-">O-</option>
+          {% else %}
+          <option value="O-">O-</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "AB+" %}
+          <option value="AB+">AB+</option>
+          {% else %}
+          <option value="AB+">AB+</option>
+           {% endif %}
+           {% if edit_trainer.blood_group == "AB-" %}
+          <option value="AB-">AB-</option>
+          {% else %}
+          <option value="AB-">AB-</option>
+           {% endif %}
+        </select>
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_trainer.father_name}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_trainer.father_occupation}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number" onfocusout="ValidateNum()" value="{{edit_trainer.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <span id="message"></span>
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainer.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_trainer.address}}">
+          </div>
+          <div class="col-sm-4 form-group">
+
+            <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{edit_trainer.city}}">
+          </div>
+          <div class="col-sm-4 form-group">
+           <select class="form-control" name="state" value="{{edit_trainer.state}}">
+         {% if edit_employees.state == "Andhra Pradesh" %}
+          <option   selected="selected" value="Andhra Pradesh">Andhra Pradesh</option>
+           {% else %}
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            {% endif %}
+
+            {% if edit_employees.state == "Arunachal Pradesh" %}
+          <option selected="selected" value="Arunachal Pradesh">Arunachal Pradesh</option>
+           {% else %}
+          <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Asom (Assam)" %}
+          <option selected="selected"  value="Asom (Assam)">Asom (Assam)</option>
+           {% else %}
+          <option value="Asom (Assam)">Asom (Assam)</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Bihar" %}
+          <option selected="selected"  value="Bihar">Bihar</option>
+           {% else %}
+          <option value="Bihar">Bihar</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Karnataka" %}
+          <option selected="selected"  value="Karnataka">Karnataka</option>
+           {% else %}
+          <option value="Karnataka">Karnataka</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Kerala" %}
+          <option selected="selected" value="Kerala">Kerala</option>
+           {% else %}
+          <option value="Kerala">Kerala</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Chhattisgarh" %}
+          <option selected="selected" value="Chhattisgarh">Chhattisgarh</option>
+           {% else %}
+          <option value="Chhattisgarh">Chhattisgarh</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Uttar Pradesh" %}
+          <option selected="selected" value="Uttar Pradesh">Uttar Pradesh</option>
+           {% else %}
+          <option value="Uttar Pradesh">Uttar Pradesh</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Goa" %}
+          <option selected="selected" value="Goa">Goa</option>
+           {% else %}
+          <option value="Goa">Goa</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Gujarat" %}
+          <option selected="selected" value="Gujarat">Gujarat</option>
+           {% else %}
+          <option value="Gujarat">Gujarat</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Haryana" %}
+          <option selected="selected" value="Haryana">Haryana</option>
+           {% else %}
+          <option value="Haryana">Haryana</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Himachal Pradesh" %}
+          <option selected="selected" value="Himachal Pradesh">Himachal Pradesh</option>
+           {% else %}
+          <option value="Himachal Pradesh">Himachal Pradesh</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Jammu and Kashmir" %}
+          <option selected="selected"  value="Jammu and Kashmir">Jammu and Kashmir</option>
+           {% else %}
+          <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Jharkhand" %}
+          <option selected="selected" value="Jharkhand">Jharkhand</option>
+           {% else %}
+          <option value="Jharkhand">Jharkhand</option>
+          {% endif %}
+
+          {% if edit_employees.state == "West Bengal" %}
+          <option  selected="selected" value="West Bengal">West Bengal</option>
+           {% else %}
+          <option value="West Bengal">West Bengal</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Madhya Pradesh" %}
+          <option selected="selected" value="Madhya Pradesh">Madhya Pradesh</option>
+           {% else %}
+          <option value="Madhya Pradesh">Madhya Pradesh</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Maharashtra" %}
+          <option selected="selected" value="Maharashtra">Maharashtra</option>
+           {% else %}
+          <option value="Maharashtra">Maharashtra</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Manipur" %}
+          <option selected="selected" value="Manipur">Manipur</option>
+           {% else %}
+          <option value="Manipur">Manipur</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Meghalaya" %}
+          <option selected="selected" value="Meghalaya">Meghalaya</option>
+           {% else %}
+          <option value="Meghalaya">Meghalaya</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Mizoram" %}
+          <option  selected="selected" value="Mizoram">Mizoram</option>
+           {% else %}
+          <option  value="Mizoram">Mizoram</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Nagaland" %}
+          <option selected="selected" value="Nagaland">Nagaland</option>
+           {% else %}
+          <option value="Nagaland">Nagaland</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Orissa" %}
+          <option selected="selected" value="Orissa">Orissa</option>
+           {% else %}
+          <option value="Orissa">Orissa</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Punjab" %}
+          <option  selected="selected" value="Punjab">Punjab</option>
+           {% else %}
+          <option value="Punjab">Punjab</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Rajasthan" %}
+          <option selected="selected" value="Rajasthan">Rajasthan</option>
+           {% else %}
+          <option value="Rajasthan">Rajasthan</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Sikkim" %}
+          <option selected="selected" value="Sikkim">Sikkim</option>
+           {% else %}
+          <option value="Sikkim">Sikkim</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Tamil Nadu" %}
+          <option selected="selected" value="Tamil Nadu">Tamil Nadu</option>
+           {% else %}
+          <option value="Tamil Nadu">Tamil Nadu</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Telangana" %}
+          <option selected="selected" value="Telangana">Telangana</option>
+           {% else %}
+          <option value="Telangana">Telangana</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Tripura" %}
+          <option selected="selected" value="Tripura">Tripura</option>
+           {% else %}
+          <option value="Tripura">Tripura</option>
+          {% endif %}
+
+          {% if edit_employees.state == "Uttarakhand (Uttaranchal)" %}
+          <option selected="selected" value="Uttarakhand (Uttaranchal)">Uttarakhand (Uttaranchal)</option>
+           {% else %}
+          <option value="Uttarakhand (Uttaranchal)">Uttarakhand (Uttaranchal)</option>
+          {% endif %}
+        </select>
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="Date">Employee Profile</label>
+            <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_trainer.profile}}">
+          </div>
+
+          <div class="col-sm-4 form-group">
+            <label for="Date">Date Of Birth</label>
+            <input type="text" name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth" value="{{edit_trainer.date_of_birth|date:'Y-m-d'}}">
+          </div>
+          <div class="col-sm-4 form-group">
+            <label for="pass2">Join Date</label>
+            <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date" value="{{edit_trainer.join_date}}">
+          </div>
+          <div class="col-sm-4 form-group">
+        <label for="Date">Documents Zip</label>
+        <input type="file" name="document_zip" class="form-control" id="document_zip" placeholder="Documents Zip"   value="{{edit_trainer.document_zip}}">
+      </div>
+        </div>
+      </div>
+      <h3 class="text-center">Educational Details</h3></br></br>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <h6>School</h6></br>
+          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_trainer.school_name}}"></br>
+           <label for="pass2">Board</label>
+          <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_trainer.board}}"></br>
+          <label for="pass2">Passing year</label>
+          <input type="text"maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainer.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        </div>
+        <div class="col-sm-6 form-group">
+          <h6>High School</h6></br>
+          <input type="text"  name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_trainer.high_school_name}}"></br>
+           <label for="pass2">Board</label>
+          <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_trainer.high_school_board}}"></br>
+          <label for="pass2">Passing year</label>
+          <input type="text"maxlength="4" size="4" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing_year" value="{{edit_trainer.high_school_passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        </div>
+      </div></br>
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <h6>Graduation Details</h6></br>
+          <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity" value="{{edit_trainer.graduation_univercity}}"></br>
+          <label for="pass2">Degree</label>
+          <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_trainer.graduation_degree}}"></br>
+          <label for="pass2">Passing year</label>
+          <input type="text" maxlength="4" size="4"name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" value="{{edit_trainer.graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+
+        </div>
+        <div class="col-sm-4 form-group">
+          <h6>Post Graduation Details</h6></br>
+          <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity" value="{{edit_trainer.post_graduation_univercity}}"></br>
+          <label for="pass2">Degree</label>
+          <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_trainer.post_graduation_degree}}"></br>
+          <label for="pass2">Passing year</label>
+          <input type="text"maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainer.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <h6>Other Degree/Chartification</h6></br>
+          <input type="text"  name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity" value="{{edit_trainer.other_univercity}}"></br>
+          <label for="pass2">Degree</label>
+          <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_trainer.other_degree}}"></br>
+          <label for="pass2">Passing year</label>
+          <input type="text"maxlength="4" size="4" name="other_year" class="form-control" id="other_year" placeholder="Other year" value="{{edit_trainer.other_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+        </div>
+      </div></br></br></br>
+
+      <!------ Include the above in your HEAD tag ---------->
+      <h2 class="text-center">Professional Details</h2></br></br>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-bordered table-hover" id="tab_logic">
+            <thead>
+              <tr>
+                <th class="text-center">
+                  #
+                </th>
+                <th class="text-center">
+                  skill
+                </th>
+                <th class="text-center">
+                  position
+                </th>
+                <th class="text-center">
+                  experience
+                </th>
+              </tr>
+            </thead>
+        
+            <tbody>
+
+            {% for i,j,k in skills%} 
+            
+                <td>
+                 {{forloop.counter }} 
+                </td>
+                
+                <td>
+                  <input type="text" name='skill[]' placeholder=' skill' class="form-control"  value="{{i}}"/>
+                </td>
+                <td>
+ <select class="form-control" name="position[]" value="{{j}}">
+              {% if j == "Beginners" %}
+              <option selected="selected" value="Beginners">Beginners</option>
+              {% else %}
+               <option value="Beginners">Beginners</option>
+               {% endif %}
+               {% if j == "Intermediate" %}
+              <option  selected="selected"value="Intermediate ">Intermediate</option>
+              {%else%}
+              <option value="Intermediate ">Intermediate</option>
+              {%endif%}
+              {% if j == "Expert" %}
+              <option selected="selected" value="Expert ">Expert</option>
+              {%else%}
+              <option value="Expert ">Expert</option>
+              {%endif%}
+            </select>
+                                </td>
+                <td>
+                  <input type="text" name='experience[]' placeholder='experience' class="form-control"  value="{{k}}"/>
+                </td>
+              </tr>
+              {% endfor %}
+            
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <a id='delete_row' style="background-color: #DC143C;color: white;padding: 5px 5px;text-align: center;margin:4px;text-decoration: none;
+        display: inline-block;float: right;" class="btn btn-default">Delete</a>
+      <a id="add_row" style="background-color:#00BFFF;color: white;padding: 5px 5px;text-align: center;margin:4px;text-decoration: none;
+        display: inline-block; float: right;" class="btn btn-default">Add</a></br></br>
+
+      <h5 class="text-center">Componey Refference </h5></br></br>
+
+      <div class="row">
+        <div class="col-sm-4 form-group">
+          <input type="text" name="company_name" class="form-control" id="company_name" placeholder="Company Name" value="{{edit_trainer.company_name}}"></br>
+          <input type="text" name="designation" class="form-control" id="designation" placeholder="Designation " value="{{edit_trainer.designation}}"></br>
+           <label for="text">Refference</label>
+          <input type="text"  name="refference" class="form-control" id="refference" placeholder="How do you know Him/Her." value="{{edit_trainer.refference}}"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <input type="text"  name="emails"  onfocusout="Validateemail()" class="form-control" id="emails" placeholder="Email" value="{{edit_employees.emails}}"></br>
+          <span id="email_errors"></span>
+          <input type="text" name="contact_no" onfocusout="Validatenum()" class="form-control" id="contact_no" placeholder="Contact Number" value="{{edit_trainer.contact_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <span id="mge"></span>
+          <label for="Date">Joining Date</label>
+          <input type="date" name="joining_date" class="form-control" id="joining_date" placeholder="Joining Date" value="{{edit_trainer.joining_date}}"></br>
+        </div>
+        <div class="col-sm-4 form-group">
+          <input type="text" name="relationships" class="form-control" id="relationships" placeholder="Relationships" value="{{edit_trainer.relationships}}"></br>
+          <input type="text" name="belongs_department" class="form-control" id="belongs_department" placeholder="Belongsepartment" value="{{edit_trainer.belongs_department}}"></br>
+          <label for="Date">Living Date</label>
+          <input type="date" name="living_date" class="form-control" id="living_date" placeholder="Living Date" value="{{edit_trainer.living_date}}"></br>
+          </br></br></br>
+        </div>
+      </div>
+
+      <script>
+        $(document).ready(function() {
+         var i = $("#tab_logic tr").length-2;
+    
+
+          $("#add_row").click(function() {
+        
+            $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name=' skill[]' type='text' placeholder=' skill' class='form-control input-md'  /> </td><td><select class='form-control' name='position[]' value='{{j}}'>{% if j == 'Beginner' %}<option selected='selected' value='Beginner'>Beginner</option>{% else %}<option value='Beginner'>Beginner</option>{% endif %}{% if j == 'Intermediate' %}<option  selected='selected'value='Intermediate '>Intermediate</option>{%else%}<option value='Intermediate '>Intermediate</option>{%endif%}{% if j == 'Expert' %}<option selected='selected' value='Expert'>Expert</option>{%else%}<option value='Expert'>Expert</option>{%endif%}</select></td><td><input  name='experience[]' type='text' placeholder='experience'  class='form-control input-md'></td>");
+            $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+            i++;
+          });
+          $("#delete_row").click(function() {
+            if (i > 1) {
+              $("#addr" + (i - 1)).html('');
+              i--;
+            }
+          });
+        });
+      </script>
+
+      <div class="col-sm-12 form-group mb-0">
+        <button class="btn btn-primary float-right">Submit</button>
+      </div>
+
+  </div>
+  </form>
+  </div></br></br>
+
+<script>
+  function ValidateEmail() 
+{ 
+  
+
+    var email = document.getElementById('email');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_error');
+    var badColor = "#FF0000";
+    if(!email.value=='')
+    {
+
+
+    if (!filter.test(email.value)) {
+      message.style.color = badColor;
+      message.innerHTML = "Please enter a valid email address"
+      return false;
+	}
+  else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+
+function Validateemail() 
+{ 
+  
+
+    var email = document.getElementById('emails');
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    var message = document.getElementById('email_errors');
+    var badColor = "#FF0000";
+    if(!email.value=='')
+    {
+
+
+    if (!filter.test(email.value)) {
+      message.style.color = badColor;
+      message.innerHTML = "Please enter a valid email address"
+      return false;
+	}
+  else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+else
+  {
+     message.innerHTML = ""
+        return true;
+  }
+
+}
+
+
+
+function ValidateNumber()
+{
+
+    var mobile = document.getElementById('phone_no');
+   
+    
+    var message = document.getElementById('messages');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+function ValidateNum()
+{
+
+    var mobile = document.getElementById('father_no');
+   
+    
+    var message = document.getElementById('message');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+function Validatenum()
+{
+
+    var mobile = document.getElementById('contact_no');
+   
+    
+    var message = document.getElementById('mge');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+
+function AdharValidation()
+{
+
+    var mobile = document.getElementById('aadhar_no');
+   
+    
+    var message = document.getElementById('msg');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=12){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid Aadhaar Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+
+function PanCardValidation()
+{
+
+    var mobile = document.getElementById('pan_card');
+   
+    
+    var message = document.getElementById('msgs');
+    var badColor = "#FF0000";
+    if(!mobile.value=='')
+    {
+
+  
+    if(mobile.value.length!=10){
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid PAN CARD Number!"
+        return false;
+    }
+    else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+  }
+else
+    {
+       message.innerHTML = ""
+        return true;
+    }
+
+}
+
+</script>
+
+  {% endblock maincontain %}

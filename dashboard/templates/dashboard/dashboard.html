@@ -1,0 +1,167 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<div class="page-wrapper mdc-toolbar-fixed-adjust">
+  <main class="content-wrapper">
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+          <div class="mdc-card info-card info-card--success">
+            <div class="card-inner">
+              <h5 class="card-title">Intern</h5>
+              <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_intern}}</h5>
+              <p class="tx-12 text-muted">Total Intern {{total_intern}}</p>
+              <div class="card-icon-wrapper">
+                <i class="fa fa-user" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+          <div class="mdc-card info-card info-card--danger">
+            <div class="card-inner">
+              <h5 class="card-title">Trainees</h5>
+              <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_trainee}}</h5>
+              <p class="tx-12 text-muted">Total Trainees {{total_trainee}}</p>
+              <div class="card-icon-wrapper">
+                <i class="fa fa-address-card" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+          <div class="mdc-card info-card info-card--primary">
+            <div class="card-inner">
+              <h5 class="card-title">Employee</h5>
+              <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_emp}}</h5>
+              <p class="tx-12 text-muted">Total Employee {{total_emp}}</p>
+              <div class="card-icon-wrapper">
+                <i class="fa fa-user-circle"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+          <div class="mdc-card info-card info-card--info">
+            <div class="card-inner">
+              <h5 class="card-title">Trainer</h5>
+              <h5 class="font-weight-light pb-2 mb-1 border-bottom">{{total_trainer}}</h5>
+              <p class="tx-12 text-muted">Total Trainer{{total_trainer}}</p>
+              <div class="card-icon-wrapper">
+                <i class="fa fa-graduation-cap"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+          <div style="margin:6px;" class="mdc-card p-0">
+            <h6 class="card-title card-padding pb-0">Intern's Birthday</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-left">Intern's Name</th>
+                    <th>Birthday</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for birth in intern_birthday %}
+                  <tr>
+
+                    <td class="text-left">{{birth.intern_name}}</td>
+                    <td>{{birth.date_of_birth}}</td>
+                    <td>Happy Birthday</td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+          <div style="margin:6px;" class="mdc-card p-0">
+            <h6 class="card-title card-padding pb-0">Trainees's Birthday</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-left">Trainees's Name</th>
+                    <th>Birthday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for birth in trainee_birthday %}
+                  <tr>
+
+                    <td class="text-left">{{birth.trainee_name}}</td>
+                    <td>{{birth.date_of_birth}}</td>
+
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+          <div style="margin:6px;" class="mdc-card p-0">
+            <h6 class="card-title card-padding pb-0">Trainer's Birthday</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-left">Trainer's Name</th>
+                    <th>Birthday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for birth in trainer_birthday %}
+                  <tr>
+
+                    <td class="text-left">{{birth.trainer_name}}</td>
+                    <td>{{birth.date_of_birth}}</td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+          <div style="margin:6px;" class="mdc-card p-0">
+            <h6 class="card-title card-padding pb-0">Employee's Birthday</h6>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-left">Employee's Name</th>
+                    <th>Birthday</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for birth in emp_birthday %}
+                  <tr>
+
+                    <td class="text-left">{{birth.emp_name}}</td>
+                    <td>{{birth.date_of_birth}}</td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+</div>
+
+{% endblock maincontain %}

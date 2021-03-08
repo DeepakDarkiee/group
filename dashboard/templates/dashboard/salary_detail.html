@@ -1,0 +1,77 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<style>
+  .table {
+    background-color: white;
+  }
+
+  .container {
+    width: 60%;
+  }
+</style>
+<button class="btn btn-primary" style="margin-left: 80%;margin-top: 5px;"> <a href="javascript:window.print()" style="color:white;">print </button></a>
+<div class="container">
+  <table class="table" border="5">
+
+    <tr>
+      <th>Employee Name</th>
+      <td>{{data.emp_name}}</td>
+    </tr>
+    <tr>
+      <th>Salary</th>
+      <td>{{data.salary}}</td>
+    </tr>
+    <tr>
+      <th>TDS</th>
+      <td>{{data.tds}}</td>
+    </tr>
+    <tr>
+      <th>BASIC</th>
+      <td>{{data.basic}}</td>
+    </tr>
+    <tr>
+      <th>PF</th>
+      <td>{{data.pf}}</td>
+    </tr>
+    <tr>
+      <th>DA</th>
+      <td>{{data.da}}</td>
+    </tr>
+    <tr>
+      <th>PROF.TAX</th>
+      <td>{{data.prof_tax}}</td>
+    </tr>
+    <tr>
+      <th>HRA</th>
+      <td>{{data.hra}}</td>
+    </tr>
+    <tr>
+      <th>TA</th>
+      <td>{{data.ta}}</td>
+    </tr>
+    <tr>
+      <th>TOTAL DEDUCTIONS</th>
+      <td>{{data.deductions}}</td>
+    </tr>
+
+    <tr>
+      <th>MEDICAL ALLOWANCE</th>
+      <td>{{data.medical_allowance}}</td>
+    </tr>
+    <tr>
+      <th>Other</th>
+      <td>{{data.other}}</td>
+    </tr>
+    <tr>
+      <th>NET SALARY</th>
+      <td>{{data.net_salary}}</td>
+    </tr>
+    <tr>
+      <th>SUB TOTAL</th>
+      <td>{{data.sub_total}}</td>
+    </tr>
+
+  </table>
+</div>
+
+{% endblock maincontain %}

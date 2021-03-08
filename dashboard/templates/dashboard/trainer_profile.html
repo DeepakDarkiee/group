@@ -1,0 +1,187 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<div class="row">
+  <div class="col-sm-1 form-group">
+  </div>
+  <div class="col-sm-9 form-group">
+    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+      <div class="mdc-card p-16">
+        <div class="row">
+          <div class="col-sm-3 form-group">
+
+            <a href="#">
+              <p><img src="{{view_profile.profile.url}}" alt=""></p>
+            </a>
+          </div>
+          <div class="col-sm-6 form-group">
+            <h5 style="margin-top:30px;">Name :&nbsp; &nbsp;{{view_profile.trainer_name}}</h5>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hoverable">
+            <thead>
+              <tr>
+                <th style="color:black;" class="text-left">Email</th></b>
+                <th>{{view_profile.email}}</th>
+                <th style="color:black;"> address</th></b>
+                <th>{{view_profile.address}}</th>
+
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">Gender</th></b>
+                <th>{{view_profile.gender}}</th>
+                <th style="color:black;"> Pin code</th></b>
+                <th>{{view_profile.pin_code}}</th>
+
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">Pan Card</th></b>
+                <th>{{view_profile.pan_card}}</th>
+                <th style="color:black;"> Date Of Birth</th></b>
+                <th>{{view_profile.date_of_birth}}</th>
+              </tr>
+              <tr>
+
+                <th class="text-left" style="color:black;">City</th></b>
+                <th>{{view_profile.city}}</th>
+                <th style="color:black;"> Blood Group</th></b>
+                <th>{{view_profile.blood_group}}</th>
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">state</th></b>
+                <th>{{view_profile.state}}</th>
+                <th style="color:black;"> Phone Number</th></b>
+                <th>{{view_profile.phone_no}}</th>
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">Join Date</th></b>
+                <th>{{view_profile.join_date}}</th>
+                <th style="color:black;"> Aadhaar Number</th></b>
+                <th>{{view_profile.aadhar_no}}</th>
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">school_name</th></b>
+                <th>{{view_profile.school_name}}</th>
+                <th style="color:black;"> board</th></b>
+                <th>{{view_profile.board}}</th>
+
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left"> passing_year</th></b>
+                <th>{{view_profile.passing_year}}</th>
+                <th style="color:black;">high_school_name</th></b>
+                <th>{{view_profile.high_school_name}}</th>
+              </tr>
+              <tr>
+                <th style="color:black;" class="text-left">high_school_board</th></b>
+                <th>{{view_profile.high_school_board}}</th>
+                <th style="color:black;">high_school_passing_year</th></b>
+                <th>{{view_profile.high_school_passing_year}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">graduation_univercity</th></b>
+                <th>{{view_profile.graduation_univercity}}</th>
+                <th style="color:black;">graduation_degree</th></b>
+                <th>{{view_profile.graduation_degree}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">graduation_year</th></b>
+                <th>{{view_profile.graduation_year}}</th>
+                <th style="color:black;">post_graduation_univercity</th></b>
+                <th>{{view_profile.post_graduation_univercity}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">post_graduation_degree</th></b>
+                <th>{{view_profile.post_graduation_degree}}</th>
+                <th style="color:black;">post_graduation_year</th></b>
+                <th>{{view_profile.post_graduation_year}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">other_univercity</th></b>
+                <th>{{view_profile.other_univercity}}</th>
+                <th style="color:black;">other_degree</th></b>
+                <th>{{view_profile.other_degree}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">other_year</th></b>
+                <th>{{view_profile.other_year}}</th>
+                <th style="color:black;">skill</th></b>
+                <th>{{view_profile.skill}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">position</th></b>
+                <th>{{view_profile.position}}</th>
+                <th style="color:black;">experience</th></b>
+                <th>{{view_profile.experience}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">company_name</th></b>
+                <th>{{view_profile.company_name}}</th>
+                <th style="color:black;">designation</th></b>
+                <th>{{view_profile.designation}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">contact_no</th></b>
+                <th>{{view_profile.contact_no}}</th>
+                <th style="color:black;">emails</th></b>
+                <th>{{view_profile.emails}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">refference</th></b>
+                <th>{{view_profile.refference}}</th>
+                <th style="color:black;">relationships</th></b>
+                <th>{{view_profile.relationships}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">belongs_department</th></b>
+                <th>{{view_profile.belongs_department}}</th>
+                <th style="color:black;">designation</th></b>
+                <th>{{view_profile.designation}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">contact_no</th></b>
+                <th>{{view_profile.contact_no}}</th>
+                <th style="color:black;">belongs_department</th></b>
+                <th>{{view_profile.belongs_department}}</th>
+              </tr>
+
+              <tr>
+                <th style="color:black;" class="text-left">joining_date</th></b>
+                <th>{{view_profile.joining_date}}</th>
+                <th style="color:black;">living_date</th></b>
+                <th>{{view_profile.living_date}}</th>
+              </tr>
+
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-1 form-group">
+  </div>
+
+</div>
+<style>
+  a p img {
+    width: 100px;
+    height: 100px;
+    border-radius: 60%;
+    -webkit-border-radius: 50%;
+  }
+</style>
+
+{% endblock maincontain %}

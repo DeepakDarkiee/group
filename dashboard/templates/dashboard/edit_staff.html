@@ -1,0 +1,100 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+
+<style>
+  label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .container {
+    width: 800px;
+  }
+
+  .form-control {
+    background-color: #ccc;
+  }
+  input{
+    text-transform: capitalize; 
+    }
+ 
+</style>
+<div class="main">
+
+  <!-- <img src="images/signup-bg.jpg" alt=""> -->
+  <div class="container">
+    <form method="POST" action="{% url 'manage_staff' staff.id %}">
+      {% csrf_token %}
+      <h2 class="text-center">Personal Details</h2>
+      <div class="row jumbotron" style="background-color:white;">
+        <div class="col-sm-6 form-group">
+          <label for="name-l"> Name</label>
+          <input type="text"  class="form-control" name="staff_name" id="staff_name" placeholder="Name" value="{{staff.staff_name}}">
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="email">Phone Number</label>
+          <input type="text" onfocusout="ValidateNumber()" class="form-control" name="phone_no" id="phone_no" onfocusout="ValidateNumber()" placeholder="Phone Number" value="{{staff.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          <span id="messages"></span>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="address-1">Aadhaar Number</label>
+          <input type="text" class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhaar Number" value="{{staff.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          <span id="msg"></span>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="address-1">Role</label>
+          <input type="text" class="form-control" name="role" id="role" placeholder="Role" value="{{staff.role}}">
+        </div>
+        <div class="col-sm-6 form-group">
+          <label for="Date">Join Date</label>
+          <input type="Date" name="join_date" class="form-control" id="join_date" placeholder="Join Date" value="{{staff.join_date}}">
+        </div>
+
+        <div class="col-sm-12 form-group mb-0">
+          <button class="btn btn-primary float-right" type="submit">Submit</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  function ValidateNumber() {
+    var mobile = document.getElementById('phone_no');
+    var message = document.getElementById('messages');
+    var badColor = "#FF0000";
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+      } else {
+        message.innerHTML = ""
+        return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
+  }
+
+  function AdharValidation() {
+    var mobile = document.getElementById('aadhar_no');
+    var message = document.getElementById('msg');
+    var badColor = "#FF0000";
+    if (!mobile.value == '') {
+      if (mobile.value.length != 12) {
+        message.style.color = badColor;
+        message.innerHTML = "Please Enter Valid Aadhaar Number!"
+        return false;
+      } else {
+        message.innerHTML = ""
+        return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
+  }
+</script>
+{% endblock maincontain %}

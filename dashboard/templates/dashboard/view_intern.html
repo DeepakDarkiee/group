@@ -1,0 +1,93 @@
+{% extends 'dashboard/base.html' %}
+{% block maincontain %}
+<form action="{% url 'view_interns' %}" method="POST">
+  {% csrf_token %}
+  <center>
+    <div class="input-group">
+      <div class="form-outline" style="margin-left: 35%;margin-bottom: none;">
+        <input type="search" placeholder="search..." id="form1" name="search" class="form-control" />
+
+      </div>
+      <button type="submit" class="btn btn-primary" name='search_btn'>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+  </center>
+  </br></br>
+</form>
+{{posts}}
+{{search_term.intern_name.intern_name}}
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
+  <div class="mdc-card p-0">
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="text-left">Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Joining Date</th>
+            <th>Intern Profile</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for intern in view_intern %}
+          <tr>
+            <td class="text-left">{{intern.intern_name|capfirst}}</td>
+            <td>{{intern.email}}</td>
+            <td>{{intern.phone_no}}</td>
+            <td>{{intern.join_date}}</td>
+            <td><a class="btn btn-secondary" href="{% url 'intern_profile' intern.id %}"><i class="fa fa-eye" style="font-size:23px"></i></a></td>
+            <td>
+              <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_intern' intern.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
+              <button type="button" class="btn btn-danger" onclick="get_id({{intern.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
+                <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i> </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="examplemodel" style="font-weight:bold;color:black;margin-left:38%;font-size:20px;">Delete Details</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
+                      <form action="{% url 'remove_intern' %}" method='POST'>
+                        {% csrf_token %}
+                        <input type='hidden' name='inter_id' id='inter_id'>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </td>
+
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#myModal').on('shown.bs.modal', function() {
+    $('#myInput').trigger('focus')
+  })
+
+  function get_id(id) {
+    document.getElementById('inter_id').value = id;
+  }
+</script>
+{% endblock maincontain %}
