@@ -13,7 +13,7 @@
   input{
     text-transform: capitalize; 
     }
-  #email,#emails{ text-transform: lowercase;}
+  #email,#emails,#join_date,#date_of_birth{ text-transform: lowercase;}
 </style>
 </head>
 
@@ -28,31 +28,33 @@
        <div class="row jumbotron">
         <div class="row">
          <div class="col-sm-4 form-group">
-
+ <label for="pass2">Trainer Name</label>
             <input type="text" class="form-control" name="trainer_name" id="trainer_name" placeholder="employee_name" value="{{edit_trainer.trainer_name}}">
           </div>
           <div class="col-sm-4 form-group">
-
+ <label for="pass2">Email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{edit_trainer.email}}" onfocusout="ValidateEmail()">
             <span id="email_error"></span>
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" class="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainer.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+ <label for="pass2">Phone Number</label>
+            <input type="text" class="form-control" maxlength="10" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" value="{{edit_trainer.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
              <span id="messages"></span>
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainer.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
+ <label for="pass2">Aaadhar Number</label>
+            <input type="text" class="form-control" maxlength="12" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" value="{{edit_trainer.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" >
           <span id="msg"></span>
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" style="text-transform: uppercase;" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainer.pan_card}}" onfocusout="PanCardValidation()" >
+ <label for="pass2">Pan Card</label>
+            <input type="text" style="text-transform: uppercase;" maxlength="10" class="form-control" name="pan_card" id="pan_card" placeholder="Pan Card" value="{{edit_trainer.pan_card}}" onfocusout="PanCardValidation()" >
             <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
+               <label for="pass2">Gender</label>
                 <select class="form-control" name="gender" value="{{edit_trainer.gender}}">
+                    <option value=""selected >Gender</option> 
                {% if edit_trainer.gender == "Male" %}
                                     <option value="Male" selected="selected" >Male</option>
                                 {% else %}
@@ -67,8 +69,10 @@
             </div>
 
           <div class="col-sm-4 form-group">
+               <label for="pass2">Blood Group</label>
             <select class="form-control" name="blood_group" value="{{edit_trainer.blood_group}}">
-             {% if edit_trainer.blood_group == "A+" %}
+             <option value=""selected >Blood Group</option>   
+        {% if edit_trainer.blood_group == "A+" %}
           <option value="A+">A+</option>
           {% else %}
           <option value="A+">A+</option>
@@ -111,32 +115,34 @@
         </select>
           </div>
           <div class="col-sm-4 form-group">
-
+ <label for="pass2">Father Name</label>
             <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name" value="{{edit_trainer.father_name}}">
           </div>
           <div class="col-sm-4 form-group">
-
+ <label for="pass2">Father Occupation</label>
             <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation" value="{{edit_trainer.father_occupation}}">
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" name="father_no" class="form-control" id="father_no" placeholder="Father's Number" onfocusout="ValidateNum()" value="{{edit_trainer.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+ <label for="pass2">Father Number</label>
+            <input type="text" name="father_no" class="form-control" maxlength="10" id="father_no" placeholder="Father's Number" onfocusout="ValidateNum()" value="{{edit_trainer.father_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             <span id="message"></span>
           </div>
           <div class="col-sm-4 form-group">
-
-            <input type="text" name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" value="{{edit_trainer.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+ <label for="pass2">Pin Code</label>
+            <input type="text" name="pin_code" class="form-control" maxlength="6" id="pin_code" placeholder="Pin code" value="{{edit_trainer.pin_code}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           </div>
           <div class="col-sm-4 form-group">
-
+ <label for="pass2">Address</label>
             <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{edit_trainer.address}}">
           </div>
           <div class="col-sm-4 form-group">
-
+ <label for="pass2">City</label>
             <input type="text" name="city" class="form-control" id="city" placeholder="City" value="{{edit_trainer.city}}">
           </div>
           <div class="col-sm-4 form-group">
+               <label for="pass2">State</label>
            <select class="form-control" name="state" value="{{edit_trainer.state}}">
+               <option value=""selected >State</option> 
          {% if edit_employees.state == "Andhra Pradesh" %}
           <option   selected="selected" value="Andhra Pradesh">Andhra Pradesh</option>
            {% else %}
@@ -313,7 +319,7 @@
         </select>
           </div>
           <div class="col-sm-4 form-group">
-            <label for="Date">Employee Profile</label>
+            <label for="Date">Trainer Profile</label>
             <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile" value="{{edit_trainer.profile}}">
           </div>
 
@@ -334,7 +340,8 @@
       <h3 class="text-center">Educational Details</h3></br></br>
       <div class="row">
         <div class="col-sm-6 form-group">
-          <h6>School</h6></br>
+          <h6>High School</h6></br>
+           <label for="Date">School Name</label>
           <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name" value="{{edit_trainer.school_name}}"></br>
            <label for="pass2">Board</label>
           <input type="text" name="board" class="form-control" id="board" placeholder="Board" value="{{edit_trainer.board}}"></br>
@@ -342,7 +349,8 @@
           <input type="text"maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" value="{{edit_trainer.passing_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-6 form-group">
-          <h6>High School</h6></br>
+          <h6>Higher Secondary School</h6></br>
+           <label for="Date">School Name</label>
           <input type="text"  name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name" value="{{edit_trainer.high_school_name}}"></br>
            <label for="pass2">Board</label>
           <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board" value="{{edit_trainer.high_school_board}}"></br>
@@ -353,6 +361,7 @@
       <div class="row">
         <div class="col-sm-4 form-group">
           <h6>Graduation Details</h6></br>
+           <label for="Date">Univercity Name</label>
           <input type="text" name="graduation_univercity" class="form-control" id="graduation_univercity" placeholder="Graduation Univercity" value="{{edit_trainer.graduation_univercity}}"></br>
           <label for="pass2">Degree</label>
           <input type="text" name="graduation_degree" class="form-control" id="graduation_degree" placeholder="Graduation Degree" value="{{edit_trainer.graduation_degree}}"></br>
@@ -361,7 +370,8 @@
 
         </div>
         <div class="col-sm-4 form-group">
-          <h6>Post Graduation Details</h6></br>
+          <h6>Post Graduation</h6></br>
+           <label for="Date">Univercity Name</label>
           <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity" value="{{edit_trainer.post_graduation_univercity}}"></br>
           <label for="pass2">Degree</label>
           <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree" value="{{edit_trainer.post_graduation_degree}}"></br>
@@ -369,7 +379,8 @@
           <input type="text"maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" value="{{edit_trainer.post_graduation_year}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
-          <h6>Other Degree/Chartification</h6></br>
+          <h6>Other Degree</h6></br>
+           <label for="Date">Univercity Name</label>
           <input type="text"  name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity" value="{{edit_trainer.other_univercity}}"></br>
           <label for="pass2">Degree</label>
           <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree" value="{{edit_trainer.other_degree}}"></br>
@@ -450,21 +461,27 @@
 
       <div class="row">
         <div class="col-sm-4 form-group">
+             <label for="pass2">Company Name</label>
           <input type="text" name="company_name" class="form-control" id="company_name" placeholder="Company Name" value="{{edit_trainer.company_name}}"></br>
+           <label for="pass2">Designation</label>
           <input type="text" name="designation" class="form-control" id="designation" placeholder="Designation " value="{{edit_trainer.designation}}"></br>
            <label for="text">Refference</label>
           <input type="text"  name="refference" class="form-control" id="refference" placeholder="How do you know Him/Her." value="{{edit_trainer.refference}}"></br>
         </div>
         <div class="col-sm-4 form-group">
+             <label for="pass2">Email</label>
           <input type="text"  name="emails"  onfocusout="Validateemail()" class="form-control" id="emails" placeholder="Email" value="{{edit_employees.emails}}"></br>
           <span id="email_errors"></span>
-          <input type="text" name="contact_no" onfocusout="Validatenum()" class="form-control" id="contact_no" placeholder="Contact Number" value="{{edit_trainer.contact_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+           <label for="pass2">Contact Number</label>
+          <input type="text" name="contact_no" onfocusout="Validatenum()"  maxlength="10" class="form-control" id="contact_no" placeholder="Contact Number" value="{{edit_trainer.contact_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
           <span id="mge"></span>
           <label for="Date">Joining Date</label>
           <input type="date" name="joining_date" class="form-control" id="joining_date" placeholder="Joining Date" value="{{edit_trainer.joining_date}}"></br>
         </div>
         <div class="col-sm-4 form-group">
+             <label for="pass2">Relationships</label>
           <input type="text" name="relationships" class="form-control" id="relationships" placeholder="Relationships" value="{{edit_trainer.relationships}}"></br>
+           <label for="pass2">Belogns Department</label>
           <input type="text" name="belongs_department" class="form-control" id="belongs_department" placeholder="Belongsepartment" value="{{edit_trainer.belongs_department}}"></br>
           <label for="Date">Living Date</label>
           <input type="date" name="living_date" class="form-control" id="living_date" placeholder="Living Date" value="{{edit_trainer.living_date}}"></br>

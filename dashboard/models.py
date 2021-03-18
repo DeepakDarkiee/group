@@ -68,18 +68,18 @@ class Intern(models.Model):
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
     intern_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
-    phone_no = models.IntegerField() 
-    aadhar_no = models.IntegerField()   
+    phone_no = models.CharField(max_length=20,blank=True,null=True)
+    aadhar_no = models.CharField(max_length=100,blank=True,null=True)    
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.DateField(blank= True,null=True)
     blood_group =  models.CharField(max_length=100, choices=blood_group,null=True)   
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
-    father_no = models.IntegerField(blank=True,null=True)   
+    father_no = models.CharField(max_length=10,blank=True,null=True)     
     city = models.CharField(max_length=100)  
     state = models.CharField(max_length=100, choices=state,null=True)  
-    pin_code = models.IntegerField(blank=True,null=True)   
+    pin_code = models.CharField(max_length=6,blank=True,null=True)     
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
     school_name = models.CharField(max_length=100,blank=True,null=True)
@@ -91,6 +91,10 @@ class Intern(models.Model):
     high_school_name = models.CharField(max_length=100,blank=True,null=True)
     high_school_board = models.CharField(max_length=100,blank=True,null=True)
     high_school_passing_year = models.CharField(max_length=4,blank=True,null=True,default=True)
+    
+    intern_cource = models.CharField(max_length=100,blank=True,null=True,default=True)
+    startdate = models.CharField(max_length=100,default=True)
+    enddate = models.CharField(max_length=100,default=True)
 
     graduation_univercity = models.CharField(max_length=100,blank=True,null=True)
     graduation_degree = models.CharField(max_length=100,blank=True,null=True)
@@ -110,7 +114,8 @@ class Intern(models.Model):
 
 class InternAttendance(models.Model):
     intern_name= models.ForeignKey('Intern',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
+    attendance = models.CharField(max_length=100)
+    half_day = models.CharField(max_length=100,default="No")
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -123,19 +128,19 @@ class Trainer(models.Model):
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
     trainer_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
-    phone_no = models.IntegerField() 
+    phone_no = models.CharField(max_length=20,blank=True,null=True)
 
-    aadhar_no = models.IntegerField()   
+    aadhar_no = models.CharField(max_length=12,blank=True,null=True)   
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.DateField(blank= True,null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
-    father_no = models.IntegerField(blank=True,null=True)   
+    father_no = models.CharField(max_length=10,blank=True,null=True)   
     city = models.CharField(max_length=100)  
     state = models.CharField(max_length=100)  
-    pin_code = models.IntegerField(blank=True,null=True)   
+    pin_code = models.CharField(max_length=6,blank=True,null=True)    
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
 
@@ -171,7 +176,7 @@ class Trainer(models.Model):
 
     company_name = models.CharField(max_length=100,blank=True,null=True)
     designation = models.CharField(max_length=100,blank=True,null=True)
-    contact_no = models.IntegerField(blank=True,null=True) 
+    contact_no = models.CharField(max_length=10,blank=True,null=True)    
     emails = models.EmailField(max_length=100,blank=True,null=True) 
     refference = models.CharField(max_length=100,blank=True,null=True)
     relationships = models.CharField(max_length=100,blank=True,null=True)
@@ -185,7 +190,8 @@ class Trainer(models.Model):
 
 class TrainerAttendance(models.Model):
     trainer_name= models.ForeignKey('Trainer',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100, default='absent') 
+    attendance = models.CharField(max_length=100, default='absent')
+    half_day = models.CharField(max_length=100,default="No")
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -197,18 +203,18 @@ class Trainee(models.Model):
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
     trainee_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
-    phone_no = models.IntegerField() 
-    aadhar_no = models.IntegerField()   
+    phone_no = models.CharField(max_length=20,blank=True,null=True)
+    aadhar_no = models.CharField(max_length=100,blank=True,null=True)    
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.DateField(blank= True,null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
-    father_no = models.IntegerField(blank=True,null=True)   
+    father_no = models.CharField(max_length=10,blank=True,null=True)     
     city = models.CharField(max_length=100)  
     state = models.CharField(max_length=100)  
-    pin_code = models.IntegerField(blank=True,null=True)   
+    pin_code = models.CharField(max_length=6,blank=True,null=True)    
     address = models.CharField(max_length=100)  
     join_date = models.CharField(max_length=100)
 
@@ -234,6 +240,10 @@ class Trainee(models.Model):
     other_degree = models.CharField(max_length=100,blank=True,null=True)
     other_univercity = models.CharField(max_length=100,blank=True,null=True)
     other_year =models.CharField(max_length=4,blank=True,null=True,default=True)
+    
+    trainee_cource = models.CharField(max_length=100,blank=True,null=True)
+    startdate = models.CharField(max_length=100)
+    enddate = models.CharField(max_length=100)
  
 
     def __str__(self): 
@@ -242,7 +252,8 @@ class Trainee(models.Model):
 
 class TraineeAttendance(models.Model):
     trainee_name= models.ForeignKey('Trainee',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100, default='absent') 
+    attendance = models.CharField(max_length=100, default='absent')
+    half_day = models.CharField(max_length=100,default="No")
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -254,18 +265,18 @@ class Employee(models.Model):
     profile = models.FileField(upload_to='media/',blank=True,null=True)  
     emp_name = models.CharField(max_length=100)  
     email = models.EmailField(max_length=100) 
-    phone_no = models.IntegerField() 
-    aadhar_no = models.IntegerField()   
+    phone_no = models.CharField(max_length=20,blank=True,null=True) 
+    aadhar_no = models.CharField(max_length=100,blank=True,null=True)    
     pan_card = models.CharField(max_length=10,blank=True,null=True)   
     gender = models.CharField(max_length=100, choices=gender,null=True)  
     date_of_birth = models.DateField(blank= True,null=True)
     blood_group = models.CharField(max_length=100,blank=True,null=True)  
     father_name = models.CharField(max_length=100,default=True)  
     father_occupation = models.CharField(max_length=100,blank=True,null=True)  
-    father_no = models.IntegerField(blank=True,null=True,default=True)   
+    father_no = models.CharField(max_length=10,blank=True,null=True)     
     city = models.CharField(max_length=100,default=True)  
     state = models.CharField(max_length=100,default=True)  
-    pin_code = models.IntegerField(blank=True,null=True)   
+    pin_code = models.CharField(max_length=6,blank=True,null=True)    
     address = models.CharField(max_length=100,default=True)  
     join_date = models.CharField(max_length=100,default=True)
 
@@ -301,7 +312,7 @@ class Employee(models.Model):
 
     company_name = models.CharField(max_length=100,blank=True,null=True,default=True)
     designation = models.CharField(max_length=100,blank=True,null=True,default=True)
-    contact_no = models.IntegerField(blank=True,null=True,default=True) 
+    contact_no = models.CharField(max_length=10,blank=True,null=True)   
     emails = models.EmailField(max_length=100,blank=True,null=True,default=True) 
     refference = models.CharField(max_length=100,blank=True,null=True,default=True)
     relationships = models.CharField(max_length=100,blank=True,null=True ,default=True)
@@ -315,7 +326,8 @@ class Employee(models.Model):
 
 class EmployeeAttendance(models.Model):
     emp_name= models.ForeignKey('Employee',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
+    attendance = models.CharField(max_length=100)
+    half_day = models.CharField(max_length=100,default="No")
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -352,8 +364,8 @@ class Payroll(models.Model):
 class Staff(models.Model):  
     staff_id= models.CharField(max_length=20,unique=True,null=True)
     staff_name = models.CharField(max_length=100)  
-    phone_no = models.IntegerField() 
-    aadhar_no = models.IntegerField(blank=True,null=True)   
+    phone_no = models.CharField(max_length=20,blank=True,null=True)  
+    aadhar_no = models.CharField(max_length=100,blank=True,null=True)   
     role = models.CharField(max_length=100)    
     join_date = models.CharField(max_length=100)
     
@@ -363,7 +375,8 @@ class Staff(models.Model):
 
 class StaffAttendance(models.Model):
     staff_name= models.ForeignKey('Staff',on_delete=models.CASCADE,default=True)
-    attendance = models.CharField(max_length=100) 
+    attendance = models.CharField(max_length=100)
+    half_day = models.CharField(max_length=100,default="No")
     date=models.CharField(max_length=100,default=date.today().strftime("%d-%m-%Y"), blank=True) 
 
     def __str__(self): 
@@ -378,6 +391,7 @@ class Lead(models.Model):
     regarding = models.CharField(max_length=100,blank=True,null=True,default=True)
     reference = models.CharField(max_length=100, choices=reference,null=True) 
     message = models.CharField(max_length=100,blank=True,null=True,default=True)    
-
+    calling = models.CharField(max_length=10,default=True)
+    whatsapp = models.CharField(max_length=10,default=True)
     def __str__(self): 
         return str(self.name)

@@ -22,26 +22,27 @@
         <thead>
           <tr>
 
-            <th class="text-left">Name</th>
-            <th>Phone Number</th>
-            <th>Aadhaar Number</th>
-            <th>Role</th>
-            <th>Join Date</th>
-
-            <th>Action</th>
+            <th style="text-align:center;">Name</th>
+            <th style="text-align:center;">Phone Number</th>
+            <th style="text-align:center;">Aadhaar Number</th>
+            <th style="text-align:center;">Role</th>
+            <th style="text-align:center;">Join Date</th>
+  {% if perms.dashboard.add_staff %}
+            <th style="text-align:center;">Action</th>
+            {%endif%}
           </tr>
         </thead>
 
         {% for d in data %}
         <tr>
 
-          <td class="text-left">{{d.staff_name|capfirst}}</td>
-          <td>{{d.phone_no}}</td>
-          <td>{{d.aadhar_no}}</td>
-          <td>{{d.role}}</td>
-          <td>{{d.join_date}}</td>
-
-          <td>
+          <td style="text-align:center;">{{d.staff_name|capfirst}}</td>
+          <td style="text-align:center;">{{d.phone_no}}</td>
+          <td style="text-align:center;">{{d.aadhar_no}}</td>
+          <td style="text-align:center;">{{d.role}}</td>
+          <td style="text-align:center;">{{d.join_date}}</td>
+  {% if perms.dashboard.add_staff %}
+          <td style="text-align:center;">
             <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_staff' d.id  %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
             </a>&nbsp;&nbsp;
             <button type="button" class="btn btn-danger" onclick="get_id({{d.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
@@ -62,7 +63,7 @@
                     <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
                     <form action="{% url 'delete_staff' d.id %}" method='POST'>
                       {% csrf_token %}
-                      <input type='text' name='id' id='id'>
+                      <input type='hidden' name='id' id='id'>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -72,7 +73,7 @@
                 </div>
               </div>
             </div>
-
+{%endif%}
           </td>
         </tr>
         {% endfor %}

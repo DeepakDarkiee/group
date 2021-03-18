@@ -6,48 +6,6 @@ input{
     }
   #email{ text-transform: lowercase;}
 </style>
-<div class="container">
-  <div class="col-md-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-  <div class="col-lg-12"></div>
-</div>
-
 <div class="row">
 
   <!-- Today status end -->
@@ -66,31 +24,38 @@ input{
                   {% csrf_token %}
                   <h1 style="font-size: 25px;text-align: center;">Lead Details</h1>
                   <!-- <h2 class="text-center">LIC Form</h2> -->
-                  <div class="row jumbotron">
-
-                    <!-- <div class="col-sm-12 form-group" style="margin-top: -20px;">
-          <label for="client_id">Client_id :</label>
-          <input type="text" class="form-control" name="client_id" id="name-f" placeholder="Enter your Client_id." required>
-        </div> -->
-
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="name">Name :</label>
+                  <div class="row jumbotron"> <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                     
                       <input type="text" class="form-control" name="name" id="name-f" placeholder=" Full Name." style="font-size:15px;" value="{{lead.name}}"><br>
                     </div>
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
 
-                      <label for="email">Email:</label>
+                      
                       <input type="email" onfocusout="ValidateEmail()" class="form-control" name="email" id="name-l" placeholder=" Email" style="font-size:15px;" value="{{lead.email}}">
                       <span id="email_error"></span>
                     </div>
 
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="Date">Regarding:</label>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+
+                     
+                      <input type="text" required class="form-control" name="calling" id="calling"  maxlength="10" placeholder=" Calling Number "  onfocusout="ValidateNumber()" style="font-size:15px;"value="{{lead.calling}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                       <span id="messages"></span>
+                    </div>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+
+                      
+                      <input type="text" required  class="form-control"  maxlength="10" name="whatsapp" id="whatsapp" placeholder="Whatsapp Number"  onfocusout="ValidateNum()" style="font-size:15px;"value="{{lead.whatsapp }}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                     <span id="msg"></span>
+                    </div>
+
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                      
                       <input type="text" name="regarding" class="form-control" id="regarding" placeholder=" Regarding" style="font-size:15px;" value="{{lead.regarding}}">
                     </div>
-                    <div class="col-sm-6 form-group" style="margin-top: -20px;">
-                      <label for="bname">Reference</label>
+                    <div class="col-sm-4 form-group" style="margin-top: -20px;">
+                     
                       <select input type="text" class="form-control" name="reference" id="reference" placeholder=" Reference " style="font-size:15px;" value="{{lead.reference}}">
+                          <option value="" selected>Reference </option>
                         {% if lead.reference == "facebook" %}
                         <option value="facebook" selected="selected">Facebook</option>
                         {% else %}
@@ -123,8 +88,8 @@ input{
                         {% endif %}
                       </select>
                     </div>
-                    <div class="col-sm-6 form-group">
-                      <label for="cost_center"> Message:</label>
+                    <div class="col-sm-12 form-group">
+                      
                       <textarea type="text" class="form-control" name="message" id="message" placeholder="Message:-" rows="3" style="font-size:15px;">{{lead.message}}
                       </textarea>
                     </div>
@@ -146,6 +111,44 @@ input{
   </div>
 </div>
 <script>
+function ValidateNumber() {
+    var mobile = document.getElementById('calling');
+    var message = document.getElementById('messages');
+    var badColor = "#FF0000";
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+      } else {
+        message.innerHTML = ""
+        return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
+  }
+
+function ValidateNum() {
+    var mobile = document.getElementById('whatsapp');
+    var message = document.getElementById('msg');
+    var badColor = "#FF0000";
+    if (!mobile.value == '') {
+      if (mobile.value.length != 10) {
+        message.style.color = badColor;
+        message.innerHTML = "Please enter 10 digits!"
+        return false;
+      } else {
+        message.innerHTML = ""
+        return true;
+      }
+    } else {
+      message.innerHTML = ""
+      return true;
+    }
+  }
+
   function ValidateEmail() {
     var email = document.getElementById('email');
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;

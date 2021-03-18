@@ -147,10 +147,12 @@ def intern_attendance_manage(request):
     if request.method == "POST":
         print("dkjjjjjjjjjjjjjjjjjjjjj method ")
         attendance_list = request.POST.getlist('attendance')
+        half_list = request.POST.getlist('half_day')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):
             intern=InternAttendance.objects.get(id=id_list[i])
             intern.attendance=attendance_list[i]
+            intern.half_day=half_list[i]
             intern.save()
         return render(request,"dashboard/intern_attendance.html")
 
@@ -287,6 +289,18 @@ def register_trainees(request):
         other_univercity =request.POST.get('other_univercity')
         other_degree=request.POST.get('other_degree')
         other_year=request.POST.get('other_year')
+        
+        
+        trainee_cource = request.POST.getlist(('trainee_cource[]'))
+        trainee_cource=','.join(trainee_cource)
+        
+        startdate = request.POST.getlist(('startdate[]'))
+        startdate=','.join(startdate)
+
+    
+        enddate = request.POST.getlist(('enddate[]'))
+        enddate=','.join(enddate)
+
 
         Insertion=Trainee(profile=profile, trainee_name= trainee_name,email=email, phone_no= phone_no, aadhar_no= aadhar_no,
         pan_card=pan_card,gender=gender,date_of_birth=date_of_birth,blood_group=blood_group,father_name=father_name,
@@ -296,7 +310,7 @@ def register_trainees(request):
         graduation_univercity=graduation_univercity,graduation_degree=graduation_degree, graduation_year= graduation_year,
         post_graduation_degree=post_graduation_degree,post_graduation_univercity=post_graduation_univercity
         ,post_graduation_year=post_graduation_year,document_zip=document_zip,
-        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state)
+        other_degree=other_degree,other_univercity=other_univercity,other_year=other_year,state=state,trainee_cource=trainee_cource,startdate=startdate,enddate=enddate)
         Insertion.save()
         return redirect('/dashboard/view_trainees') 
     else:
@@ -325,7 +339,11 @@ def trainees_profile(request,id):
 @login_required(login_url='/')
 def edit_trainees(request,id):
     trainees = Trainee.objects.get(id=id)
-    return render(request,"dashboard/edit_trainees.html",{'edit_trainees':trainees})  
+    trainee_cource=list(trainees.trainee_cource.split(","))
+    startdate=list(trainees.startdate.split(","))
+    enddate=list(trainees.enddate.split(","))
+    trainee_info=zip(trainee_cource,startdate,enddate)
+    return render(request,"dashboard/edit_trainees.html",{'edit_trainees':trainees,'trainee':trainee_info})  
 
 
 ################ update trainees ##################  
@@ -378,6 +396,16 @@ def manage_trainees(request,id):
         trainees.other_univercity =request.POST.get('other_univercity','')
         trainees.other_degree=request.POST.get('other_degree','')
         trainees.other_year=request.POST.get('other_year','')
+        
+        trainees.trainee_cource = request.POST.getlist(('trainee_cource[]'))
+        trainees.trainee_cource=','.join(trainees.trainee_cource)
+        
+        trainees.startdate = request.POST.getlist(('startdate[]'))
+        trainees.startdate=','.join(trainees.startdate)
+
+    
+        enddate = request.POST.getlist(('enddate[]'))
+        enddate=','.join(trainees.enddate)
         trainees.save()
     return redirect('/dashboard/view_trainees')
 
@@ -426,10 +454,12 @@ def trainee_attendance_edit(request,update_date):
 def trainee_attendance_manage(request):
     if request.method == "POST":
         attendance_list = request.POST.getlist('attendance')
+        half_list = request.POST.getlist('half_day')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):
             trainee=TraineeAttendance.objects.get(id=id_list[i])
             trainee.attendance=attendance_list[i]
+            trainee.half_day=half_list[i]
             trainee.save()
         return render(request,"dashboard/trainee_attendance.html")
 
@@ -586,10 +616,12 @@ def emp_attendance_edit(request,update_date):
 def emp_attendance_manage(request):
     if request.method == "POST":
         attendance_list = request.POST.getlist('attendance')
+        half_list = request.POST.getlist('half_day')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):        
             emp=EmployeeAttendance.objects.get(id=id_list[i])
             emp.attendance=attendance_list[i]
+            emp.half_day=half_list[i]
             emp.save()
         return render(request,"dashboard/emp_attendance.html")
 
@@ -950,10 +982,12 @@ def trainer_attendance_edit(request,update_date):
 def trainer_attendance_manage(request):
     if request.method == "POST":
         attendance_list = request.POST.getlist('attendance')
+        half_list = request.POST.getlist('half_day')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):
             trainer=TrainerAttendance.objects.get(id=id_list[i])
             trainer.attendance=attendance_list[i]
+            trainer.half_day=half_list[i]
             trainer.save()
         return render(request,"dashboard/trainer_attendance.html")
 
@@ -1117,10 +1151,12 @@ def staff_attendance_edit(request,update_date):
 def staff_attendance_manage(request):
     if request.method == "POST":
         attendance_list = request.POST.getlist('attendance')
+        half_list = request.POST.getlist('half_day')
         id_list=request.POST.getlist('id')
         for i in range(len(attendance_list)):        
             staff=StaffAttendance.objects.get(id=id_list[i])
             staff.attendance=attendance_list[i]
+            staff.half_day=half_list[i]
             staff.save()
         return render(request,"dashboard/staff_attendance.html")
 
@@ -1144,17 +1180,18 @@ def search(request):
 
 def register_lead(request):
     if request.method =="POST":
-        name=request.POST['name']
-        email=request.POST['email']
-        regarding=request.POST['regarding']
-        reference=request.POST['reference']
-        message=request.POST['message']
-        Insertion=Lead(name=name, email= email,regarding=regarding,reference=reference,message=message)
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        regarding=request.POST.get('regarding')
+        reference=request.POST.get('reference')
+        message=request.POST.get('message')
+        calling=request.POST.get('calling')
+        whatsapp=request.POST.get('whatsapp')
+        Insertion=Lead(name=name,email=email,regarding=regarding,reference=reference,message=message,calling=calling,whatsapp=whatsapp)
         Insertion.save()
         return redirect('/dashboard/view_lead') 
     else:
         return render(request,"dashboard/register_lead.html")
-
 ################ view lead #########################################################################################
 
 def view_lead(request):
@@ -1192,6 +1229,8 @@ def manage_lead(request,id):
         lead.regarding = request.POST.get('regarding','')
         lead.reference = request.POST.get('reference','')
         lead.message = request.POST.get('message','')
+        lead.calling = request.POST.get('calling','')
+        lead.whatsapp = request.POST.get('whatsapp','')
         lead.save()
     return redirect('/dashboard/view_lead/')
 

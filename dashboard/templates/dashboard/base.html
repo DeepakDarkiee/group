@@ -69,6 +69,7 @@
               </a>
               <div class="mdc-expansion-panel" id="intern">
                 <nav class="mdc-list mdc-drawer-submenu">
+                     {% if perms.dashboard.add_intern %}
 
                   <div class="mdc-list-item mdc-drawer-item">
 
@@ -76,20 +77,26 @@
                       REGISTER &nbsp;&nbsp;INTERN
                     </a>
                   </div>
+                   {% endif %}
+                   {% if perms.dashboard.view_intern %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_interns' %}">
                       VIEW &nbsp;&nbsp;INTERNS
                     </a>
                   </div>
+                   {% endif %}
+                    {% if perms.dashboard.view_intern %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'intern_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
+                   {% endif %}
                 </nav>
               </div>
             </div>
-
+             
+            
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trainees">
                 <i class="fa fa-address-card" aria-hidden="true"></i>
@@ -99,25 +106,31 @@
               </a>
               <div class="mdc-expansion-panel" id="trainees">
                 <nav class="mdc-list mdc-drawer-submenu">
+                    {% if perms.dashboard.add_trainee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_trainees' %}">
                       REGISTER&nbsp;&nbsp;TRAINEES
                     </a>
                   </div>
+                  {% endif %}
+                  {% if perms.dashboard.view_trainee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_trainees' %}">
                       VIEW &nbsp;&nbsp;TRAINEES
                     </a>
                   </div>
+                   {% endif %}
+                   {% if perms.dashboard.view_trainee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'trainee_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
+                  {% endif %}
                 </nav>
               </div>
             </div>
-
+             
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="employee">
                 <i class="fa fa-user-circle"></i>
@@ -127,25 +140,31 @@
               </a>
               <div class="mdc-expansion-panel" id="employee">
                 <nav class="mdc-list mdc-drawer-submenu">
+                    {% if perms.dashboard.add_employee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_employees' %}">
                       REGISTER&nbsp;&nbsp;EMPLOYEE
                     </a>
                   </div>
+                    {% endif %}
+                  {% if perms.dashboard.view_employee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_employees' %}">
                       VIEW &nbsp;&nbsp;EMPLOYEE
                     </a>
                   </div>
+                  {% endif %}
+                  {% if perms.dashboard.view_employee %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'emp_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
+                    {% endif %}
                 </nav>
               </div>
             </div>
-
+           
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="trai">
                 <i class="fa fa-graduation-cap"></i>
@@ -153,27 +172,34 @@
                 TRAINER
                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
               </a>
+            
               <div class="mdc-expansion-panel" id="trai">
                 <nav class="mdc-list mdc-drawer-submenu">
+                    {% if perms.dashboard.add_trainer %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_trainer' %}">
                       REGISTER&nbsp;&nbsp;TRAINER
                     </a>
                   </div>
+                   {% endif %}
+                  {% if perms.dashboard.view_trainer %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_trainer' %}">
                       VIEW &nbsp;&nbsp;TRAINER
                     </a>
                   </div>
+                  {% endif %}
+                   {% if perms.dashboard.view_trainer %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'trainer_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
+                   {% endif %}
                 </nav>
               </div>
             </div>
-
+           
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="staff">
                 <i class="fa fa-users" style="font-size:16px"></i>&nbsp;&nbsp;&nbsp;
@@ -183,25 +209,33 @@
               </a>
               <div class="mdc-expansion-panel" id="staff">
                 <nav class="mdc-list mdc-drawer-submenu">
+                {% if perms.dashboard.add_staff %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_staff' %}">
                       REGISTER&nbsp;&nbsp; STAFF
                     </a>
                   </div>
+                    {% endif %}
+                  {% if perms.dashboard.view_staff %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_staff' %}">
                       VIEW&nbsp;&nbsp; STAFF
                     </a>
                   </div>
+                  {% endif %}
+                    {% if perms.dashboard.view_staff %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'staff_attendance' %}">
                       ATTENDANCE
                     </a>
                   </div>
+                    {% endif %}
                 </nav>
               </div>
             </div>
+          
 
+            
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="lead">
                 <i class="fa fa-arrows-alt"></i>
@@ -211,22 +245,27 @@
               </a>
               <div class="mdc-expansion-panel" id="lead">
                 <nav class="mdc-list mdc-drawer-submenu">
+                    {% if perms.dashboard.add_lead %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'register_lead' %}">
                       REGISTER&nbsp;&nbsp; LEAD
                     </a>
                   </div>
+                   {% endif %}
+                  {% if perms.dashboard.view_lead %}
                   <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-drawer-link" href="{% url 'view_lead' %}">
                       VIEW&nbsp;&nbsp; LEAD
                     </a>
                   </div>
+                  {% endif %}
 
                 </nav>
               </div>
             </div>
+        
 
-            {% if perms.dashboard.add_payroll %}
+            {% if perms.dashboard.view_payroll %}
 
             <div class="mdc-list-item mdc-drawer-item">
               <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="payroll">

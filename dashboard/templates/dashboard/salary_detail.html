@@ -1,5 +1,30 @@
-{% extends 'dashboard/base.html' %}
+
 {% block maincontain %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DS Group</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/static/assets/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/static/assets/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- <link rel="stylesheet" href="/static/assets/vendors/flag-icon-css/css/flag-icon.min.css"> -->
+  <link rel="stylesheet" href="/static/assets/vendors/jvectormap/jquery-jvectormap.css">
+  <!-- End plugin css for this page -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="/static/assets/css/demo/style.css">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
+
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://codepen.io/skjha5993/pen/bXqWpR.css">
 <style>
   .table {
     background-color: white;
@@ -9,69 +34,70 @@
     width: 60%;
   }
 </style>
+</head>
 <button class="btn btn-primary" style="margin-left: 80%;margin-top: 5px;"> <a href="javascript:window.print()" style="color:white;">print </button></a>
 <div class="container">
   <table class="table" border="5">
 
     <tr>
       <th>Employee Name</th>
-      <td>{{data.emp_name}}</td>
+      <td class="text-left">{{data.emp_name}}</td>
     </tr>
     <tr>
       <th>Salary</th>
-      <td>{{data.salary}}</td>
+      <td class="text-left">{{data.salary}}</td>
     </tr>
     <tr>
       <th>TDS</th>
-      <td>{{data.tds}}</td>
+      <td class="text-left">{{data.tds}}</td>
     </tr>
     <tr>
       <th>BASIC</th>
-      <td>{{data.basic}}</td>
+      <td class="text-left">{{data.basic}}</td>
     </tr>
     <tr>
       <th>PF</th>
-      <td>{{data.pf}}</td>
+      <td class="text-left">{{data.pf}}</td>
     </tr>
     <tr>
       <th>DA</th>
-      <td>{{data.da}}</td>
+      <td class="text-left">{{data.da}}</td>
     </tr>
     <tr>
       <th>PROF.TAX</th>
-      <td>{{data.prof_tax}}</td>
+      <td class="text-left">{{data.prof_tax}}</td>
     </tr>
     <tr>
       <th>HRA</th>
-      <td>{{data.hra}}</td>
+      <td class="text-left">{{data.hra}}</td>
     </tr>
     <tr>
       <th>TA</th>
-      <td>{{data.ta}}</td>
+      <td class="text-left">{{data.ta}}</td>
     </tr>
     <tr>
       <th>TOTAL DEDUCTIONS</th>
-      <td>{{data.deductions}}</td>
+      <td class="text-left">{{data.deductions}}</td>
     </tr>
 
     <tr>
       <th>MEDICAL ALLOWANCE</th>
-      <td>{{data.medical_allowance}}</td>
+      <td class="text-left">{{data.medical_allowance}}</td>
     </tr>
     <tr>
       <th>Other</th>
-      <td>{{data.other}}</td>
+      <td class="text-left">{{data.other}}</td>
     </tr>
     <tr>
       <th>NET SALARY</th>
-      <td>{{data.net_salary}}</td>
+      <td class="text-left">{{data.net_salary}}</td>
     </tr>
     <tr>
       <th>SUB TOTAL</th>
-      <td>{{data.sub_total}}</td>
+      <td class="text-left">{{data.sub_total}}</td>
     </tr>
 
   </table>
 </div>
-
+</html>
 {% endblock maincontain %}

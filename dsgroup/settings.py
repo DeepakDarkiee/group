@@ -25,7 +25,7 @@ SECRET_KEY = '%q=!#e4%j+au-i*&ei%ag&3n)9jy^unxjpidrigwl46l3)#shx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dsgroup.dsmie.com']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'account',
     'dashboard',
-    
+    'django_createsuperuserwithpassword',
 ]
 
 MIDDLEWARE = [
@@ -76,13 +76,28 @@ LOGIN_URL = '/account/login'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'dsmiecom_dsgroup',
+        'USER': 'dsmiecom_dsgroup',
+        'PASSWORD': 'dsgroup@dsmie',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -122,9 +137,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
  
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
-]
+STATIC_ROOT ="static"
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')

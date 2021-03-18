@@ -25,25 +25,28 @@
         <thead>
           <tr>
 
-            <th class="text-left">Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Join Date</th>
-            <th>Intern Profile</th>
-            <th>Action</th>
+            <th style="text-align:center;margin-left:3px;">Name</th>
+            <th style="text-align:center;">Email</th>
+            <th style="text-align:center;">Phone Number</th>
+            <th style="text-align:center;">Join Date</th>
+            <th style="text-align:center;">Intern Profile</th>
+              {% if perms.dashboard.add_trainee %}
+            <th style="text-align:center;">Action</th>
+            {%endif%}
           </tr>
         </thead>
 
         {% for trainee in view_trainees %}
         <tr>
 
-          <td class="text-left">{{trainee.trainee_name|capfirst}}</td>
-          <td>{{trainee.email}}</td>
-          <td>{{trainee.phone_no}}</td>
-          <td>{{trainee.join_date}}</td>
-          <td><a class="btn btn-secondary" href="{% url 'trainees_profile' trainee.id %}"><i class="fa fa-eye" style="font-size:23px"></i>
+          <td style="text-align:center;margin-left:3px;">{{trainee.trainee_name|capfirst}}</td>
+          <td style="text-align:center;">{{trainee.email}}</td>
+          <td style="text-align:center;">{{trainee.phone_no}}</td>
+          <td style="text-align:center;">{{trainee.join_date}}</td>
+          <td style="text-align:center;"><a class="btn btn-secondary" href="{% url 'trainees_profile' trainee.id %}"><i class="fa fa-eye" style="font-size:23px"></i>
             </a></td>
-          <td>
+              {% if perms.dashboard.add_trainee %}
+          <td style="text-align:center;">
             <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_trainees' trainee.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
             <button type="button" class="btn btn-danger" onclick="get_id({{trainee.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
               <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i>
@@ -63,7 +66,7 @@
                     <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
                     <form action="{% url 'remove_trainees' %}" method='POST'>
                       {% csrf_token %}
-                      <input type='text' name='trainee_id' id='trainee_id'>
+                      <input type='hidden' name='trainee_id' id='trainee_id'>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -75,7 +78,7 @@
             </div>
 
           </td>
-
+{%endif%}
         </tr>
         {% endfor %}
         </tbody>

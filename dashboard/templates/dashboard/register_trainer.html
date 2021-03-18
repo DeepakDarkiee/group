@@ -13,7 +13,7 @@
   input{
     text-transform: capitalize; 
     }
-  #email,#emails{ text-transform: lowercase;}
+ #email,#emails,#joining_date,#living_date,#date_of_birth,#join_date{ text-transform: lowercase;}
 </style>
 </head>
 
@@ -39,17 +39,17 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" requiredclass="form-control" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text" required class="form-control"  maxlength="10" name="phone_no" onfocusout="ValidateNumber()" id="phone_no" placeholder="Phone Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             <span id="messages"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required class="form-control" name="aadhar_no" id="aadhar_no" placeholder="Aadhar Number" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text" class="form-control" name="aadhar_no"  maxlength="12" id="aadhar_no" placeholder="Aadhar Number" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             <span id="msg"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required class="form-control" style="text-transform: uppercase;" name="pan_card" id="pan_card" onfocusout="PanCardValidation()" placeholder="Pan Card">
+            <input type="text" class="form-control"  maxlength="10" style="text-transform: uppercase;" name="pan_card" id="pan_card" onfocusout="PanCardValidation()" placeholder="Pan Card">
             <span id="msgs"></span>
           </div>
           <div class="col-sm-4 form-group">
@@ -75,20 +75,20 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required  name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
+            <input type="text" name="father_name" class="form-control" id="father_name" placeholder="Father's Name">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
+            <input type="text" name="father_occupation" class="form-control" id="father_occupation" placeholder="Father's Occupation">
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required name="father_no" class="form-control" id="father_no" onfocusout="ValidateNum()" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text" name="father_no"  maxlength="10" class="form-control" id="father_no" onfocusout="ValidateNum()" placeholder="Father's Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
             <span id="message"></span>
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required  name="city" class="form-control" id="city" placeholder="City">
+            <input type="text" name="city" class="form-control" id="city" placeholder="City">
           </div>
           <div class="col-sm-4 form-group">
             <select class="form-control" name="state">
@@ -126,25 +126,25 @@
           </div>
           <div class="col-sm-4 form-group">
 
-            <input type="text" required name="pin_code" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+            <input type="text" name="pin_code"  maxlength="6" class="form-control" id="pin_code" placeholder="Pin code" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           </div>
           <div class="col-sm-8 form-group">
 
-            <input type="text" required  name="address" class="form-control" id="address" placeholder="Address">
+            <input type="text" name="address" class="form-control" id="address" placeholder="Address">
           </div>
 
           <div class="col-sm-4 form-group">
             <label for="Date">Trainer's Profile</label>
-            <input type="file" required class="form-control" name="profile" id="profile" placeholder="Profile">
+            <input type="file" class="form-control" name="profile" id="profile" placeholder="Profile">
           </div>
 
           <div class="col-sm-4 form-group">
             <label for="Date">Date Of Birth</label>
-            <input type="Date" required name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
+            <input type="Date"  required  name="date_of_birth" class="form-control" id="date_of_birth" placeholder="Date Of Birth">
           </div>
           <div class="col-sm-4 form-group">
             <label for="pass2">Join Date</label>
-            <input type="date" required name="join_date" class="form-control" id="join_date" placeholder="Join Date">
+            <input type="date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
           </div>
           <div class="col-sm-4 form-group">
             <label for="Date">Documents Zip</label>
@@ -155,15 +155,15 @@
       <h3 class="text-center">Educational Details</h3></br></br>
       <div class="row">
         <div class="col-sm-6 form-group">
-          <h6>School</h6></br>
-          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="School Name"></br>
+          <h6>High School</h6></br>
+          <input type="text" name="school_name" class="form-control" id="school_name" placeholder="High School"></br>
           <input type="text" name="board" class="form-control" id="board" placeholder="Board"></br>
           <input type="text" maxlength="4" size="4" name="passing_year" class="form-control" id="passing_year" placeholder="Passing year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-6 form-group">
-          <h6>High School</h6></br>
-          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High School Name"></br>
-          <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High School Board"></br>
+          <h6>High Secondary School</h6></br>
+          <input type="text" name="high_school_name" class="form-control" id="high_school_name" placeholder="High Secondary School"></br>
+          <input type="text" name="high_school_board" class="form-control" id="high_school_board" placeholder="High Secondary  Board"></br>
           <input type="text" maxlength="4" size="4" name="high_school_passing_year" class="form-control" id="high_school_passing_year" placeholder="High School Passing_year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
       </div></br>
@@ -175,13 +175,13 @@
           <input type="text" maxlength="4" size="4" name="graduation_year" class="form-control" id="graduation_year" placeholder="Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
-          <h6>Post Graduation Details</h6></br>
+          <h6>Post Graduation</h6></br>
           <input type="text" name="post_graduation_univercity" class="form-control" id="post_graduation_univercity" placeholder="Post Graduation Univercity"></br>
           <input type="text" name="post_graduation_degree" class="form-control" id="post_graduation_degree" placeholder="Post Graduation Degree"></br>
           <input type="text" maxlength="4" size="4" name="post_graduation_year" class="form-control" id="post_graduation_year" placeholder="Post Graduation year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
         </div>
         <div class="col-sm-4 form-group">
-          <h6>Other Degree/Chartification</h6></br>
+          <h6>Other Degree</h6></br>
           <input type="text" name="other_univercity" class="form-control" id="other_univercity" placeholder="Other Univercity"></br>
           <input type="text" name="other_degree" class="form-control" id="other_degree" placeholder="Other Degree"></br>
           <input type="text" maxlength="4" size="4" name="other_year" class="form-control" id="other_year" placeholder="Other year" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
@@ -252,7 +252,7 @@
         <div class="col-sm-4 form-group">
           <input type="text" name="emails" class="form-control" onfocusout="Validateemail()" id="emails" placeholder="Email"></br>
           <span id="email_errors"></span>
-          <input type="text" name="contact_no" class="form-control" onfocusout="Validatenum()" id="contact_no" placeholder="Contact Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
+          <input type="text" name="contact_no" class="form-control"  maxlength="10" onfocusout="Validatenum()" id="contact_no" placeholder="Contact Number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"></br>
           <span id="mge"></span>
           <label for="Date">Joining Date</label>
           <input type="date" name="joining_date" class="form-control" id="joining_date" placeholder="Joining Date"></br>

@@ -7,16 +7,12 @@
     color: #555;
   }
 
-  .container {
-    width: 800px;
-  }
-
-  .form-control {
-    background-color: #ccc;
-  }
+  
+ 
   input{
     text-transform: capitalize; 
     }
+    #join_date{ text-transform:lowercase;}
  
 </style>
 <div class="main">
@@ -33,12 +29,12 @@
         </div>
         <div class="col-sm-6 form-group">
           <label for="email">Phone Number</label>
-          <input type="text" onfocusout="ValidateNumber()" class="form-control" name="phone_no" id="phone_no" onfocusout="ValidateNumber()" placeholder="Phone Number" value="{{staff.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          <input type="text" onfocusout="ValidateNumber()"  maxlength="10" class="form-control" name="phone_no" id="phone_no" onfocusout="ValidateNumber()" placeholder="Phone Number" value="{{staff.phone_no}}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="messages"></span>
         </div>
         <div class="col-sm-6 form-group">
           <label for="address-1">Aadhaar Number</label>
-          <input type="text" class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhaar Number" value="{{staff.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+          <input type="text" class="form-control"  maxlength="12" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhaar Number" value="{{staff.aadhar_no}}" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="msg"></span>
         </div>
         <div class="col-sm-6 form-group">

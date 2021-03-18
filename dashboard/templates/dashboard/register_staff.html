@@ -13,6 +13,7 @@
   input{
     text-transform: capitalize; 
     }
+    #join_date{ text-transform: lowercase;}
   
 </style>
 <div class="main">
@@ -28,21 +29,21 @@
         </div>
         <div class="col-sm-4 form-group">
           <label for="email">Phone Number</label>
-          <input type="text" required class="form-control" name="phone_no" id="phone_no" onfocusout="ValidateNumber()" placeholder="Phone Number" onfocusout="ValidateNumber()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+          <input type="text" required class="form-control"  maxlength="10" name="phone_no" id="phone_no" onfocusout="ValidateNumber()" placeholder="Phone Number" onfocusout="ValidateNumber()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
           <span id="messages"></span>
         </div>
         <div class="col-sm-4 form-group">
           <label for="address-1">Aadhaar Number</label>
-          <input type="text" required class="form-control" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhaar Number" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+          <input type="text" class="form-control"  maxlength="12" name="aadhar_no" onfocusout="AdharValidation()" id="aadhar_no" placeholder="Aadhaar Number" onfocusout="AdharValidation()" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
           <span id="msg"></span>
         </div>
         <div class="col-sm-4 form-group">
           <label for="address-1">Role</label>
-          <input type="text" required class="form-control" name="role" id="role" placeholder="Role" required>
+          <input type="text" class="form-control" name="role" id="role" placeholder="Role">
         </div>
         <div class="col-sm-4 form-group">
           <label for="Date">Join Date</label>
-          <input type="Date" required name="join_date" class="form-control" id="join_date" placeholder="" required>
+          <input type="Date" name="join_date" class="form-control" id="join_date" placeholder="Join Date">
         </div>
 
         <div class="col-sm-12 form-group mb-0">

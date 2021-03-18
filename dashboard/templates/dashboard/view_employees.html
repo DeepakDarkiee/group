@@ -22,23 +22,26 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="text-left">Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Joining Date</th>
-            <th>Employee Profile</th>
-            <th>Action</th>
+            <th style="text-align:center;">Name</th>
+            <th style="text-align:center;">Email</th>
+            <th style="text-align:center;">Phone Number</th>
+            <th style="text-align:center;">Joining Date</th>
+            <th style="text-align:center;">Employee Profile</th>
+             {% if perms.dashboard.add_employee %}
+            <th style="text-align:center;">Action</th>
+            {%endif%}
           </tr>
         </thead>
 
         {% for employee in view_employees %}
         <tr>
-          <td class="text-left">{{employee.emp_name|capfirst}}</td>
-          <td>{{employee.email}}</td>
-          <td>{{employee.phone_no}}</td>
-          <td>{{employee.join_date}}</td>
-          <td><a class="btn btn-secondary" href="{% url 'emp_profile' employee.id  %}"><i class="fa fa-eye" style="font-size:23px"></i> </a></td>
-          <td>
+          <td style="text-align:center;">{{employee.emp_name|capfirst}}</td>
+          <td style="text-align:center;">{{employee.email}}</td>
+          <td style="text-align:center;">{{employee.phone_no}}</td>
+          <td style="text-align:center;">{{employee.join_date}}</td>
+          <td style="text-align:center;"><a class="btn btn-secondary" href="{% url 'emp_profile' employee.id  %}"><i class="fa fa-eye" style="font-size:23px"></i> </a></td>
+            {% if perms.dashboard.add_employee %}
+          <td style="text-align:center;">
             <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_employees' employee.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
             <button type="button" class="btn btn-danger" onclick="get_id({{employee.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
               <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i>
@@ -58,7 +61,7 @@
                     <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
                     <form action="{% url 'remove_employees' %}" method='POST'>
                       {% csrf_token %}
-                      <input type='text' name='employee_id' id='employee_id'>
+                      <input type='hidden' name='employee_id' id='employee_id'>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,6 +73,7 @@
             </div>
 
           </td>
+          {%endif%}
         </tr>
         {% endfor %}
         </tbody>

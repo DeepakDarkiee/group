@@ -24,25 +24,31 @@
         <thead>
           <tr>
 
-            <th class="text-left">Name</th>
-            <th>Email</th>
-            <th>Regarding</th>
-            <th>Reference</th>
-            <th>Message</th>
-            <th>Action</th>
+            <th style="text-align:center;">Name</th>
+            <th style="text-align:center;">Email</th>
+            <th style="text-align:center;">Regarding</th>
+            <th style="text-align:center;">Reference</th>
+            <th style="text-align:center;">Message</th>
+            <th style="text-align:center;">Calling no.</th>
+            <th style="text-align:center;">Whatsapp no.</th>
+              {% if perms.dashboard.add_lead %}
+            <th style="text-align:center;">Action</th>
+            {%endif%}
           </tr>
         </thead>
 
         {% for lead in view_lead %}
         <tr>
 
-          <td class="text-left">{{lead.name|capfirst}}</td>
-          <td>{{lead.email}}</td>
-          <td>{{lead.regarding}}</td>
-          <td>{{lead.reference}}</td>
-          <td>{{lead.message}}</td>
-
-          <td>
+          <td style="text-align:center;">{{lead.name|capfirst}}</td>
+          <td style="text-align:center;">{{lead.email}}</td>
+          <td style="text-align:center;">{{lead.regarding}}</td>
+          <td style="text-align:center;">{{lead.reference}}</td>
+          <td style="text-align:center;">{{lead.message}}</td>
+          <td style="text-align:center;">{{lead.calling}}</td>
+          <td style="text-align:center;">{{lead.whatsapp}}</td>
+  {% if perms.dashboard.add_employee %}
+          <td style="text-align:center;">
             <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_lead' lead.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
             <button type="button" class="btn btn-danger" onclick="get_id({{lead.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
               <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i>
@@ -74,6 +80,7 @@
             </div>
 
           </td>
+          {%endif%}
 
         </tr>
         {% endfor %}

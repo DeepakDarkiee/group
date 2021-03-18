@@ -41,6 +41,10 @@
   input:checked+.slider {
     background-color: green;
   }
+  
+  input:checked+#check1 {
+    background-color: blue;
+  }
 
   input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
@@ -85,6 +89,7 @@
             <th width="25%">Intern Name</th>
 
             <th width="25%">Attendance</th>
+            <th width="25%">Half Day</th>
           </tr>
           {% for obj in all_attendance %}
 
@@ -110,6 +115,16 @@
               <input type="hidden" name="attendance" id='{{obj.id}}' value="{{obj.attendance}}">
 
             </td>
+            <td style="text-align:left">
+              <label class="switch">
+                <input type="checkbox" id='half_day{{obj.id}}'  {% if obj.half_day == "Yes" %} checked {% endif %} onClick="leave('{{obj.id}}')">
+                <span class="slider round" id="check1"></span>
+              </label>
+              <!-- <input type="checkbox" id='check{{d.id}}' onClick="check('{{d.id}}')">  -->
+              <input type="hidden" name="half_day" id='value{{obj.id}}' value="{{obj.half_day}}">
+
+            </td>
+
           </tr>
 
           {% endfor %}
@@ -133,6 +148,19 @@
       document.getElementById(id).value = "absent";
     }
   }
+  
+  function leave(id) {
+  
+    
+    var checkBox = document.getElementById("half_day" + id);
+    if (checkBox.checked == true) {
+      
+      document.getElementById("value"+id).value = "Yes";
+    } else {
+      document.getElementById("value"+id).value = "No";
+    }
+  }
+
 </script>
 
 {% endblock maincontain %}

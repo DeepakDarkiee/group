@@ -25,27 +25,32 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="text-left">Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Joining Date</th>
-            <th>Intern Profile</th>
-            <th>Action</th>
+            <th  style="text-align:center;margin-left:3px;">Name</th>
+            <th style="text-align:center;">Email</th>
+            <th style="text-align:center;">Phone Number</th>
+            <th style="text-align:center;">Joining Date</th>
+            <th style="text-align:center;">Intern Profile</th>
+            {% if perms.dashboard.add_intern %}
+            <th style="text-align:center;">Action</th>
+            {% endif %}
           </tr>
         </thead>
         <tbody>
           {% for intern in view_intern %}
           <tr>
-            <td class="text-left">{{intern.intern_name|capfirst}}</td>
-            <td>{{intern.email}}</td>
-            <td>{{intern.phone_no}}</td>
-            <td>{{intern.join_date}}</td>
-            <td><a class="btn btn-secondary" href="{% url 'intern_profile' intern.id %}"><i class="fa fa-eye" style="font-size:23px"></i></a></td>
-            <td>
+            <td style="text-align:center;margin-left:3px;">{{intern.intern_name|capfirst}}</td>
+            <td style="text-align:center;">{{intern.email}}</td>
+            <td style="text-align:center;">{{intern.phone_no}}</td>
+            <td style="text-align:center;">{{intern.join_date}}</td>
+            <td style="text-align:center;"><a class="btn btn-secondary" href="{% url 'intern_profile' intern.id %}"><i class="fa fa-eye" style="font-size:23px"></i></a></td>
+              {% if perms.dashboard.change_intern %}
+            <td style="text-align:center;">
               <button class="btn btn-primary" style="background-color:blue;width:40px;"><a href="{% url 'edit_intern' intern.id %}"><i class="fa fa-pencil-square-o" style="font-size:23px;text-align:center;color:white;"></i></a></button>
+              {%endif%}
+                {% if perms.dashboard.delete_intern %}
               <button type="button" class="btn btn-danger" onclick="get_id({{intern.id}})" data-toggle="modal" data-target="#example" style="width:40px;">
                 <i class="fa fa-trash" aria-hidden="true" style="font-size:23px;"></i> </button>
-
+                {%endif%}
               <!-- Modal -->
               <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -56,12 +61,15 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
+                     {% if perms.dashboard.add_intern %}
                     <div class="modal-body">
                       <h5 style="font-weight:bold;color:#000;margin-left:21%;font-size:15px;"> Are you sure you want to Delete this</h5>
                       <form action="{% url 'remove_intern' %}" method='POST'>
                         {% csrf_token %}
                         <input type='hidden' name='inter_id' id='inter_id'>
                     </div>
+                    {%endif%}
+                   
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-danger">Delete</button>

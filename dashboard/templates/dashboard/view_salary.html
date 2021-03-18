@@ -7,24 +7,24 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="text-left">Name</th>
-            <th>Email</th>
-            <th>Join_date</th>
-            <th>Salary</th>
-            <th>Action</th>
+            <th style="text-align:center;">Name</th>
+            <th style="text-align:center;">Email</th>
+            <th style="text-align:center;">Join_date</th>
+            <th style="text-align:center;">Salary</th>
+            <th style="text-align:center;">Action</th>
           </tr>
         </thead>
 
         {% for d in data %}
         <tr>
 
-          <td class="text-left">{{d.emp_name.emp_name|capfirst}}</td>
-          <td>{{d.emp_name.email}}</td>
-          <td>{{d.emp_name.join_date}}</td>
-          <td>{{d.salary}}</td>
+          <td style="text-align:center;">{{d.emp_name.emp_name|capfirst}}</td>
+          <td style="text-align:center;">{{d.emp_name.email}}</td>
+          <td style="text-align:center;">{{d.emp_name.join_date}}</td>
+          <td style="text-align:center;">{{d.salary}}</td>
 
-          <td>
-            <a href="{% url 'salary_detail' d.id %}">View</a>&nbsp;&nbsp;
+          <td style="text-align:center;">
+            <a class="btn btn-secondary" href="{% url 'salary_detail' d.id %}"><i class="fa fa-eye" style="font-size:23px"></i></a>&nbsp;&nbsp;
 
           </td>
         </tr>
